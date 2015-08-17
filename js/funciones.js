@@ -140,6 +140,17 @@ function volver_actividades()
 	$('#grafica').html(null);
 }
 
+function dibujarCanvas(id){
+var c=document.getElementById("linea"+id);
+        var cxt=c.getContext("2d");
+ 
+        cxt.moveTo(20,10);
+        cxt.lineTo(130,100);
+        cxt.lineWidth = 7;
+        cxt.strokeStyle = "blue";
+        cxt.stroke();
+}
+
 function habilitar_div (data) {
 	console.log(data);
 	/**
@@ -147,15 +158,36 @@ function habilitar_div (data) {
 	 */
 	var cuenta_ant = 0;
 	for (i=0; i < data.length; i++) {
-			if( data[i]['antecesor'].length==1 )
-				if( data[i]['antecesor'][0] == '' ) {
-					$('#actividad_'+cuenta_ant+'_0').css('display','block');
-					$('#actividad_'+cuenta_ant+'_0').text(data[i]['actividad']);
-					console.log($('#actividad_'+cuenta_ant+'_0'));
-					cuenta_ant++;					
-				}
+		if( data[i]['antecesor'].length==1 )
+			if( data[i]['antecesor'][0] == '' ) {
+				$('#actividad_'+cuenta_ant+'_0').css('display','block');
+				$('#actividad_'+cuenta_ant+'_0').text(data[i]['actividad']);
+				console.log($('#actividad_'+cuenta_ant+'_0'));
+				cuenta_ant++;					
+			}
 
-		}
+	}
+
+	var info_array = Array();
+
+	for (i=0; i < data.length; i++) {
+		if( data[i]['antecesor'].length >=1 )
+			if( data[i]['antecesor'][0] != '' ) {
+				var f = 0;
+				for (var j = 0; j < data[i]['antecesor'].length; j++) {
+					if( f == ((data[i]['antecesor'].length)-1) ){
+						$('#actividad_'+data[i]['antecesor'][j]+'_'+i).css('display','block');
+						$('#actividad_'+data[i]['antecesor'][j]+'_'+i).text(data[i]['actividad']);
+						dibujarCanvas(i);
+						info_array.push(data[i]['actividad']);
+					}
+					f++;
+				};
+				cuenta_ant++;					
+			}
+
+	}
+	console.log(info_array);
 }
 
 function graficar()

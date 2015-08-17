@@ -48,7 +48,8 @@ switch ($_REQUEST['ac']) {
 		for ($i=0; $i < 20; $i++) {	
 			$html .= "<div class='content_grid'>";
 			for ($j=0; $j < 20 ; $j++) { 
-				$html .= "<div id='actividad_".$i."_".$j."' class='act_graf' style='left:$left; text-align:center; width: 30px;'>".$j."</div>";		
+				$html .= "<div id='actividad_".$i."_".$j."' class='act_graf' style='left:$left; text-align:center; width: 30px;'></div>";		
+				$html .= "<canvas id='linea".$j."' class='lineas'></canvas>";		
 			}	
 			$html .= "</div>";	
 			$left=$left+50;
