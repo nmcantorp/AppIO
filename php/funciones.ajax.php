@@ -44,15 +44,18 @@ switch ($_REQUEST['ac']) {
 		$html .= "<section class='grafica'>";
 		//$html .= "<table style=' border-spacing: 20px; border-collapse: separate;'><tbody>";
 
-		$left = 0;
+		$left = -10;
+		$top = -10;
 		for ($i=0; $i < 20; $i++) {	
 			$html .= "<div class='content_grid'>";
-			for ($j=0; $j < 20 ; $j++) { 
+			for ($j=0; $j < 20 ; $j++) {
 				$html .= "<div id='actividad_".$i."_".$j."' class='act_graf' style='left:$left; text-align:center; width: 30px;'></div>";		
-				$html .= "<canvas id='linea".$j."' class='lineas'></canvas>";		
+				$html .= "<canvas id='linea".$j."' class='lineas' style='left:".$left."px; top:".$top."px'></canvas>";		
+				 $left += 35;
+				 $top += 30;
 			}	
 			$html .= "</div>";	
-			$left=$left+50;
+			//$left=$left+50;
 		}
 		//$html .= "</tbody></table>";
 		$html .= "</section>";

@@ -208,7 +208,34 @@ function graficar()
 		array_tiempo[i] = result[1][i];
 	}
 
+	localStorage["actividad"] = JSON.stringify(array_act);
+	localStorage["tiempo"] = JSON.stringify(array_tiempo);
+	localStorage["validacion"] = JSON.stringify(valida);
+	/*sessionStorage.setItem("actividad", array_act);
+	sessionStorage.setItem("tiempo", array_tiempo);
+	sessionStorage.setItem("valida", valida);*/
+	window.location.href ="grafica.html";
+	return false;
+	
 	$.ajax({
+		url: 'grafica.html',
+		type: 'POST',
+		dataType: 'html',
+		data: {param1: 'value1'},
+	})
+	.done(function(data) {
+		$('#grafica').html(data);
+		console.log("success");
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+	
+
+	/*$.ajax({
 		url: 'php/funciones.ajax.php',
 		type: 'POST',
 		dataType: 'json',
@@ -231,7 +258,7 @@ function graficar()
 	})
 	.always(function() {
 		console.log("complete");
-	});
+	});*/
 	
 }
 
