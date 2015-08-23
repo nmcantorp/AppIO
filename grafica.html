@@ -9,6 +9,9 @@
 <body>
   <script src="js/jquery.min.js"></script>  
 <script>
+var actividades;
+var tiempo;
+var valida; 
     /**
      * Funcion que captura las variables pasados por GET
      * http://www.lawebdelprogramador.com/pagina.html?id=10&pos=3
@@ -40,13 +43,10 @@
     {
         // Cogemos los valores pasados por get
         var valores=getGET();
-        var actividades = JSON.parse(localStorage["actividad"]);
-        var tiempo = JSON.parse(localStorage["tiempo"]);
-        var valida = JSON.parse(localStorage["validacion"]);
-        console.log(actividades);
-        console.log(tiempo);
-        console.log(valida);
-        if(valores)
+        actividades = JSON.parse(localStorage["actividad"]);
+        tiempo = JSON.parse(localStorage["tiempo"]);
+        valida = JSON.parse(localStorage["validacion"]);
+       /* if(valores)
         {
             // hacemos un bucle para pasar por cada indice del array de valores
             for(var index in valores)
@@ -56,7 +56,7 @@
         }else{
             // no se ha recibido ningun parametro por GET
             document.write("<br>No se ha recibido ningún parámetro");
-        }
+        }*/
     }
     </script>
  
@@ -70,13 +70,13 @@
     }
 
     function drawChart() {
-    	var f = new Date();
-    	var dia = 0;
-    	var mes = 0;
-    	var anio = 0;
-    	dia = parseInt(f.getDate());
-    	mes = parseInt(f.getMonth());
-    	anio = parseInt(f.getFullYear());
+      var f = new Date();
+      var dia = 0;
+      var mes = 0;
+      var anio = 0;
+      dia = parseInt(f.getDate());
+      mes = parseInt(f.getMonth());
+      anio = parseInt(f.getFullYear());
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Task ID');
       data.addColumn('string', 'Task Name');
@@ -85,8 +85,58 @@
       data.addColumn('number', 'Duration');
       data.addColumn('number', null);
       data.addColumn('string', 'Dependencies');
+      console.log(actividades);
+      console.log(tiempo);
+      console.log(valida);
+      var datos = {};
+      var arreglo = Array();
+      for (var i = 0 ; i < actividades.length; i++) {
 
-      data.addRows([
+        if(actividades[i]['antec'] == '')
+        {
+          var predecesor = null;
+        }else
+        {
+          var predecesor = ""+actividades[i]['antec']+"";
+        }
+        var tiempo_final = parseInt(tiempo[i]['tiempo']);
+        data_final = [
+                ""+(i+1)+"" ,
+                "Actividad "+(i+1)+"" ,
+                null,
+                null,
+                daysToMilliseconds(tiempo_final) ,
+                100,
+                predecesor
+                ];
+        data.addRow(data_final);
+
+        /*if( (i+1) != actividades.length)
+          data += , ;*/
+        //arreglo.push(data_final);
+        /*if(i == 0)
+          datos = '' + (i+1) +',' + 'Actividad '+(i+1) +','+ null +','+ null +','+ daysToMilliseconds(tiempo_final) +','+ 100 +',' + predecesor +'';
+        else
+          datos += '' + (i+1) +',' + 'Actividad '+(i+1) +','+ null +','+ null +','+ daysToMilliseconds(tiempo_final) +','+ 100 +',' + predecesor +'';
+        data.addRows([[arreglo]]);*/
+        //i=actividades.length;
+      };
+      var myArr = JSON.stringify(arreglo);
+      var myObj = {
+          arreglo
+      };
+
+      var array = $.map(myObj, function(value, index) {
+          return [value];
+      });
+
+
+      console.log(array);
+      //console.log(myArr);
+      //console.log( arreglo  );
+      //data.addRows( array );
+
+      /*data.addRows([
         ['1', 'Actividad 1',
          null, null, daysToMilliseconds(12),  100,  null],
         ['2', 'Actividad 2',
@@ -108,7 +158,7 @@
 
         ['10', 'Actividad 10',
          null, null, daysToMilliseconds(4), 100, '8,9']
-      ]);
+      ]);*/
 
       var options = {
         height: 300,
@@ -129,8 +179,8 @@
               width: 2,
               color: 'green',
               radius: 0},
-          	innerGridTrack: {fill: '#CEFF45'},
-  			innerGridDarkTrack: {fill: '#E4FF70'}  
+          	innerGridTrack: {fill: '#F1FFB8'},
+  			innerGridDarkTrack: {fill: '#DDFFBB'}  
         }              
       };
 

@@ -16,7 +16,7 @@ function Solo_Numerico(variable){
 	for (var i = 0; i < variable.length; i++) {
 		letra = variable[i];
 		// ,|
-		valida = letra.search(/(;|[1-9])+/g);		
+		valida = letra.search(/(,|[1-9])+/g);		
 		if(valida){
 		    Numer=parseInt(letra);
 		    if (!isNaN(Numer)){
