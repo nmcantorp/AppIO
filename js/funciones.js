@@ -214,7 +214,7 @@ function graficar()
 	/*sessionStorage.setItem("actividad", array_act);
 	sessionStorage.setItem("tiempo", array_tiempo);
 	sessionStorage.setItem("valida", valida);*/
-	window.location.href ="grafica.html";
+	window.location.href ="grafica2.html";
 	return false;
 	
 	$.ajax({
