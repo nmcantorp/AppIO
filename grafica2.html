@@ -126,10 +126,22 @@ var valida;
           };
         }
         console.log(predecesor_final);
+        cargue_x = -1000;
+        cargue_y = -100;
         var tiempo_final = parseInt(tiempo[i]['tiempo']);
-        data_final = {id:     (i+1) ,
-                      label:  "Actividad "+(i+1)+""
-                      };
+        if(i == 0){
+          data_final = {id:     (i+1) ,
+                        label:  "Actividad "+(i+1)+"",
+                        group: j,
+                        x: cargue_x, y: cargue_y };
+        }else{
+          cargue_x = (cargue_x /100)+100;
+          cargue_y = (cargue_y /50)+200;
+          data_final = {id:     (i+1) ,
+                        label:  "Actividad "+(i+1)+"",
+                        group: j,
+                        x: cargue_x, y: cargue_y };
+        }
 
         //data.addRow(data_final);
         arreglo.push(data_final);
@@ -150,11 +162,57 @@ var valida;
         nodes: nodes,
         edges: edges
     };
-    var options = { width: '100%',
+    var options = { groups: {
+                      1: {color:{background:'#87CEFA'}, borderWidth:3},
+                      2: {color:{background:'#EE82EE'}, borderWidth:3},
+                      3: {color:{background:'#6A5ACD'}, borderWidth:3},
+                      4: {color:{background:'#778899'}, borderWidth:3},
+                      5: {color:{background:'#DC143C'}, borderWidth:3},
+                      6: {color:{background:'#5F9EA0'}, borderWidth:3},
+                      7: {color:{background:'#BA55D3'}, borderWidth:3},
+                      8: {color:{background:'#C71585'}, borderWidth:3},
+                      9: {color:{background:'#6B8E23'}, borderWidth:3},
+                      10: {color:{background:'#6B8E23'}, borderWidth:3},
+                      11: {color:{background:'#6B8E23'}, borderWidth:3},
+                      12: {color:{background:'#6B8E23'}, borderWidth:3},
+                      13: {color:{background:'#6B8E23'}, borderWidth:3},
+                      14: {color:{background:'#6B8E23'}, borderWidth:3},
+                      15: {color:{background:'#6B8E23'}, borderWidth:3},
+                      16: {color:{background:'#6B8E23'}, borderWidth:3},
+                      17: {color:{background:'#6B8E23'}, borderWidth:3},
+                      18: {color:{background:'#6B8E23'}, borderWidth:3},
+                      19: {color:{background:'#6B8E23'}, borderWidth:3},
+                      20: {color:{background:'#6B8E23'}, borderWidth:3}
+                    },
+                    autoResize: false,
+                    width: '100%',
                     height: '100%',
                     locale: 'es',
                     physics:{
-                      stabilization: false
+                      stabilization: true
+                    },nodes:{
+                      size:30,
+                      color: {
+                        background: '#006699',
+                        border: '#3c3c3c',
+                        highlight: {
+                          background: '#07f968',
+                          border: '#3c3c3c'
+                        }
+                      },
+                      shape:'box',
+                      level: 1 ,
+                      font: '20px arial #FFFFF7',
+                      fixed: {
+                        x:false,
+                        y:false
+                      },
+                    shadow:{
+                      enabled: false,
+                      size:10,
+                      x:5,
+                      y:5
+                    }                      
                     }};
 
     // initialize your network!
