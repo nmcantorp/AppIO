@@ -47,6 +47,24 @@
 	</script>
 <body>
 	<div id="consulta">Mostrar</div>
+
+	<?php $directorio = opendir("./JSON_knowlege"); //ruta actual
+while ($archivo = readdir($directorio)) //obtenemos un archivo y luego otro sucesivamente
+{
+    if (is_dir($archivo))//verificamos si es o no un directorio
+    {
+
+        //echo "[".$archivo . "]<br />"; //de ser un directorio lo envolvemos entre corchetes
+    }
+    else
+    {
+        echo "<a href='javascript:consulta(".$archivo.");'>".$archivo . "</a><br />";
+    }
+} ?>
+
+<!DOCTYPE html>
+
+<href  src=""
 	<table  border="1" cellpadding="0">
 		<caption id="title"></caption>
 		<tbody>
@@ -62,5 +80,9 @@
 		</tbody>
 	</table>
 	<!-- <div id="resultado_gen"></div> -->
+<!-- <video width="1400" height="1200" controls autoplay>
+  <source src="VID_20150831_214134841.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video> -->
 </body>
 </html>
