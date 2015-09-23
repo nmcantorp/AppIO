@@ -16,10 +16,11 @@
 			});
 		});
 
-		function consulta()
+		function consulta( archivo )
 		{
+			//console.log(archivo);return false;
 			$.ajax({
-				url: 'JSON_knowlege/Dutch_Pharmacogenetics_Working_Group_Guideline_for_fluorouracil_and_DPYD.json',
+				url: 'JSON_knowlege/'+archivo,
 				//type: 'default GET (Other values: POST)',
 				dataType: 'json',
 				//data: {param1: 'value1'},
@@ -58,27 +59,23 @@ while ($archivo = readdir($directorio)) //obtenemos un archivo y luego otro suce
     }
     else
     {
-        echo "<a href='javascript:consulta(".$archivo.");'>".$archivo . "</a><br />";
+        echo "<a href='javascript:consulta(\"$archivo\");'>".$archivo . "</a><br />";
     }
 } ?>
-
-<!DOCTYPE html>
-
-<href  src=""
-	<table  border="1" cellpadding="0">
-		<caption id="title"></caption>
-		<tbody>
-			<tr >
-				<td id="summaryHtml"></td>
-				<td id="textHtml" colspan="2"></td>
-			<tr>
-				<td id="relatedGenes"></td>
-				<td id="symbol"></td>
-				<td id="relatedDrugs"></td>
-			</tr>
-			</tr>
-		</tbody>
-	</table>
+<table  border="1" cellpadding="0">
+	<caption id="title"></caption>
+	<tbody>
+		<tr >
+			<td id="summaryHtml"></td>
+			<td id="textHtml" colspan="2"></td>
+		<tr>
+			<td id="relatedGenes"></td>
+			<td id="symbol"></td>
+			<td id="relatedDrugs"></td>
+		</tr>
+		</tr>
+	</tbody>
+</table>
 	<!-- <div id="resultado_gen"></div> -->
 <!-- <video width="1400" height="1200" controls autoplay>
   <source src="VID_20150831_214134841.mp4" type="video/mp4">
