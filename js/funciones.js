@@ -4,6 +4,7 @@ $(document).on('ready',document, function(){
 	var valida = false;
 	var array_act = [];
 	var array_tiempo = [];
+	var cantidad_actividad = 0;
 });
 
 
@@ -41,14 +42,29 @@ function cargar_actividades(cantidad){
 	}
 
 	for (var i = 0; i < cantidad; i++) {		
-		$('#content_activities').append('<div><label>Actividad '+(i+1)+': <input type="number" id="tiempo_'+i+'" min="0" max="1000"/></label><label>Antecesores Actividad '+(i+1)+': <input type="text" placeholder="Ejemplo 1;2;..;n" name="antec" id="antec_'+i+'" onkeyUp="return ValNumero(this);" /></label></div>');
+		$('#content_activities').append('<div class="act_detail"><label>Actividad '+(i+1)+': <input type="number" id="tiempo_'+i+'" min="0" max="1000"/></label><label>Precede '+(i+1)+': <input type="text" placeholder="Ejemplo 1;2;..;n" name="antec" id="antec_'+i+'" onkeyUp="return ValNumero(this);" /></label></div>');
 		if((i+1) != cantidad)
 		{
 			$('#content_activities').append('<div id="separador"></div>');
 		}
 	};
+	cantidad_actividad = i;
+	$('#content_activities').append('<input type="button" class="boton_agrega" id="act_detail'+(i+1)+'" value="+" onClick="agregar_actividades(this);">');
 
-	$('#content_activities').append('<div class="contact-but"><input type="submit" id="cargart" value="Cargar Tiempo" onClick="javascript:carga_info();" /></div>');
+	$('#content_activities').append('<div class="contact-but"><input type="button" id="cargart" value="Cargar Tiempo" onClick="javascript:carga_info();" /></div> <div class="contact-but"><input type="button" id="volvert" onClick="javascript:$(\'#info_proyecto\').show(); $(\'#content_activities\').hide()" value="Regresar" /></div>');
+}
+
+function agregar_actividades(value){
+
+	$('#content_activities .contact-but > input').remove();
+	
+	$('#content_activities').append('<div id="separador"></div>');
+
+	$('#content_activities').append('<div class="act_detail"><label>Actividad '+(cantidad_actividad+1)+': <input type="number" id="tiempo_'+cantidad_actividad+'" min="0" max="1000"/></label><label>Precede '+(cantidad_actividad+1)+': <input type="text" placeholder="Ejemplo 1;2;..;n" name="antec" id="antec_'+cantidad_actividad+'" onkeyUp="return ValNumero(this);" /></label></div>');
+
+	$('#content_activities').append('<input type="button" class="boton_agrega" id="act_detail'+(cantidad_actividad+1)+'" value="+" onClick="agregar_actividades(this);">');
+	$('#content_activities').append('<div class="contact-but"><input type="button" id="cargart" value="Cargar Tiempo" onClick="javascript:carga_info();" /></div> <div class="contact-but"><input type="button" id="volvert" onClick="javascript:$(\'#info_proyecto\').show(); $(\'#content_activities\').hide()" value="Regresar" /></div>');
+	cantidad_actividad++;
 }
 
 function alista_info()
@@ -214,7 +230,8 @@ function graficar()
 	/*sessionStorage.setItem("actividad", array_act);
 	sessionStorage.setItem("tiempo", array_tiempo);
 	sessionStorage.setItem("valida", valida);*/
-	window.location.href ="grafica2.html";
+	window.location.href = "grafica.html";
+	//window.location.href = "grafica2.html";
 	return false;
 	
 	$.ajax({
@@ -264,28 +281,54 @@ function graficar()
 
 $(document).ready(function(){
 	var cantidad = 0;
-	$('#cargar').click(function(){
+	$('#cargar').click(function(){ 
 		todoCorrecto=true;
-	 	if ($('#nombre_p').val() == null || $('#nombre_p').val().length == 0 || /^\s*$/.test($('#nombre_p').val())){
-       		todoCorrecto=false;
+	 	if ($('#n_proyecto').val() == null 
+	 		|| $('#n_gerente').val().length == 0 
+	 		|| /^\s*$/.test($('#nombre_p').val())
+	 		|| $('#m_tiempo').val() == '' ){
+       		todoCorrecto=false; alert('aca');
        	}
 
-		if( todoCorrecto &&  $('#can_act').val()!=null && $('#can_act').val()!='' ) 
+		cantidad = 2;
+		if(cantidad>0)
 		{
-			cantidad = $('#can_act').val();
-			if(cantidad>0)
-			{
-				$('#error').html(null);
-				$('#actividades').html(null);
-				$('#actividades').append('<div id="blanco"></div><h4>Tiempos Actividades</h4><div class="contact-text" id="content_activities" ></div>');
-				cargar_actividades(cantidad);
+			$('#error').html(null);
+			$('#actividades').html(null);
+			$('#actividades').append('<div id="blanco"></div><h4>Tiempos Actividades</h4><div class="contact-text" id="content_activities" ></div>');
+			cargar_actividades(cantidad);
+			$('#info_proyecto').hide();
 
-			}else{
-				$('#error').html('La cantidad debe ser Mayor a Cero');
-			}
 		}else{
-			$('#error').html('Informaci&oacute;n Incompleta');
+			$('#error').html('La cantidad debe ser Mayor a Cero');
 		}
+		
+	});
+
+	/*Menu*/
+
+	$('#menu_pert').click(function(){
+		window.location="menu_pert.html";
+	});
+
+	$('#menu_concepto').click(function(){
+		window.location="menu_pert.html";
+	});
+
+	$('#menu_contacto').click(function(){
+		window.location="menu_pert.html";
+	});
+
+	$('#menu_pert_int').click(function(){
+		window.location="menu_pert.html";
+	});
+
+	$('#menu_basico_int').click(function(){
+		window.location="pert.html";
+	});
+
+	$('#menu_abrir_int').click(function(){
+		window.location="menu_pert.html";
 	});
 	
 });

@@ -48,48 +48,31 @@
   </script>
 </head>
 <body>
-	<style>
-		.view-port, .track .inner, .slider-container .item.cover {
-		    height: auto !important;
-		    padding-left: 10px;
-		}
-	</style>
   <div class="track example-2">
-    <h2>Creaci&oacute;n PERT Basico</h2>
-    <div class="inner" id="step_one">
+    <div class="inner">
+      <h2>Menu PERT</h2>
 
-      <div class="view-port" id="info_proyecto">
-
-      	<div class="div_create"><label for="n_proyecto">Nombre Proyecto <input type="text" name="n_proyecto" id="n_proyecto"></label></div>
-      	<div class="div_create"><label for="n_gerente">Nombre Gerente <input type="text" name="n_gerente" id="n_gerente"></label></div>
-      	<div class="div_create"><label for="f_inicio">Fecha Inicio <input type="date" name="f_inicio" id="f_inicio"></label></div>	
-      	<div class="div_create"><label for="m_tiempo">Medida de Tiempo 
-      		<select name="m_tiempo" id="m_tiempo">
-      			<option value="">--Seleccionar Medida--</option>
-      			<option value="d">Dias</option>
-      			<option value="h">Hora</option>
-      		</select>
-      	</label></div>
-      	<div class="div_create"><label for="obj">Objetivo  
-      		<textarea name="obj" id="obj" cols="25" rows="5"></textarea>
-      		</label>
-      	</div>	
-
-      	<div class="botones">
-      		<div id="cargar">Crear</div>
-      		<div><a href="menu_pert.html">Regresar</a></div>
-      	</div>	
+      <div class="view-port">
+		<div class="menu">
+      <span class="titulo_menu">PERT Avanzado</span>
+		<div class="boton_menu_int" id="menu_pert_int"><span>A</span></div>
+    </div>
+    <div class="menu">
+      <span class="titulo_menu">PERT Basico</span>
+		<div class="boton_menu_int" id="menu_basico_int"><span>B</span></div>
+    </div>
+    <div class="menu">
+      <span class="titulo_menu">Abir Proyecto</span>
+		<div class="boton_menu_int" id="menu_abrir_int"><span>O</span></div>
+    <div id="regresar"><a href="menu.html">Regresar</a></div>
+    </div>
     
       </div>
 
       <div class="bullet-pagination"></div>
-      <div id="actividades"></div>
-    </div>
-
-    <div class="contact-bottom" id="step_two" style="display: none;">
-      <!-- Campo para cargar tabla de resumen -->
-      <div class="col-md-7 contact-left"><h4>Resumen Actividades</h4></div>
-      <div class="table-responsive"></div>
+      <!-- <div class="actions button-group">
+        <a href="#" class="button primary icon reload">Restart</a>
+      </div> -->
     </div>
 
     <div class="pagination">
