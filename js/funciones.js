@@ -42,7 +42,7 @@ function cargar_actividades(cantidad){
 	}
 
 	for (var i = 0; i < cantidad; i++) {		
-		$('#content_activities').append('<div class="act_detail"><label>Actividad '+(i+1)+': <input type="number" id="tiempo_'+i+'" min="0" max="1000"/></label><label>Precede '+(i+1)+': <input type="text" placeholder="Ejemplo 1;2;..;n" name="antec" id="antec_'+i+'" onkeyUp="return ValNumero(this);" /></label></div>');
+		$('#content_activities').append('<div class="act_detail"><label>Actividad '+(i+1)+': <input type="number" id="tiempo_'+i+'" min="0" max="1000"/></label><label>Precede '+(i+1)+': <input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+i+'" onkeyUp="return ValNumero(this);" /></label></div>');
 		if((i+1) != cantidad)
 		{
 			$('#content_activities').append('<div id="separador"></div>');
@@ -51,7 +51,27 @@ function cargar_actividades(cantidad){
 	cantidad_actividad = i;
 	$('#content_activities').append('<input type="button" class="boton_agrega" id="act_detail'+(i+1)+'" value="+" onClick="agregar_actividades(this);">');
 
-	$('#content_activities').append('<div class="contact-but"><input type="button" id="cargart" value="Cargar Tiempo" onClick="javascript:carga_info();" /></div> <div class="contact-but"><input type="button" id="volvert" onClick="javascript:$(\'#info_proyecto\').show(); $(\'#content_activities\').hide()" value="Regresar" /></div>');
+	$('#content_activities').append('<div class="contact-but"><input type="button" id="cargart" value="Cargar Tiempo" onClick="javascript:carga_info();" /></div> <div class="contact-but"><input type="button" id="volvert" onClick="javascript:$(\'#info_proyecto\').show(); $(\'#content_activities\').hide();$(\'#actividades\').hide()" value="Regresar" /></div>');
+}
+
+function cargar_actividades_avanzado(cantidad){
+
+	if(cantidad > 5)
+	{
+		$('.footer').attr('position', 'relative');
+	}
+
+	for (var i = 0; i < cantidad; i++) {		
+		$('#content_activities').append('<div class="act_detail"><span>Actividad '+(i+1)+'</span><label>T. Optimista '+(i+1)+': <input type="number" id="tiempo_o_'+i+'" min="0" max="1000"/></label><label>T. Pesimista '+(i+1)+': <input type="number" id="tiempo_p_'+i+'" min="0" max="1000"/></label><label>T. Probable '+(i+1)+': <input type="number" id="tiempo_pr_'+i+'" min="0" max="1000"/></label><label>Costo Act. '+(i+1)+': <input type="number" id="costo_'+i+'" min="0" max="1000"/></label><label>Precede '+(i+1)+': <input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+i+'" onkeyUp="return ValNumero(this);" /></label></div>');
+		if((i+1) != cantidad)
+		{
+			$('#content_activities').append('<div id="separador"></div>');
+		}
+	};
+	cantidad_actividad = i;
+	$('#content_activities').append('<input type="button" class="boton_agrega" id="act_detail'+(i+1)+'" value="+" onClick="agregar_actividades_avanzado(this);">');
+
+	$('#content_activities').append('<div class="contact-but"><input type="button" id="cargart" value="Cargar Tiempo" onClick="javascript:carga_info();" /></div> <div class="contact-but"><input type="button" id="volvert" onClick="javascript:$(\'#info_proyecto\').show(); $(\'#content_activities\').hide();$(\'#actividades\').hide()" value="Regresar" /></div>');
 }
 
 function agregar_actividades(value){
@@ -60,10 +80,23 @@ function agregar_actividades(value){
 	
 	$('#content_activities').append('<div id="separador"></div>');
 
-	$('#content_activities').append('<div class="act_detail"><label>Actividad '+(cantidad_actividad+1)+': <input type="number" id="tiempo_'+cantidad_actividad+'" min="0" max="1000"/></label><label>Precede '+(cantidad_actividad+1)+': <input type="text" placeholder="Ejemplo 1;2;..;n" name="antec" id="antec_'+cantidad_actividad+'" onkeyUp="return ValNumero(this);" /></label></div>');
+	$('#content_activities').append('<div class="act_detail"><label>Actividad '+(cantidad_actividad+1)+': <input type="number" id="tiempo_'+cantidad_actividad+'" min="0" max="1000"/></label><label>Precede '+(cantidad_actividad+1)+': <input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+cantidad_actividad+'" onkeyUp="return ValNumero(this);" /></label></div>');
 
 	$('#content_activities').append('<input type="button" class="boton_agrega" id="act_detail'+(cantidad_actividad+1)+'" value="+" onClick="agregar_actividades(this);">');
-	$('#content_activities').append('<div class="contact-but"><input type="button" id="cargart" value="Cargar Tiempo" onClick="javascript:carga_info();" /></div> <div class="contact-but"><input type="button" id="volvert" onClick="javascript:$(\'#info_proyecto\').show(); $(\'#content_activities\').hide()" value="Regresar" /></div>');
+	$('#content_activities').append('<div class="contact-but"><input type="button" id="cargart" value="Cargar Tiempo" onClick="javascript:carga_info();" /></div> <div class="contact-but"><input type="button" id="volvert" onClick="javascript:$(\'#info_proyecto\').show(); $(\'#content_activities\').hide(); $(\'#actividades\').hide();" value="Regresar" /></div>');
+	cantidad_actividad++;
+}
+
+function agregar_actividades_avanzado(value){
+
+	$('#content_activities .contact-but > input').remove();
+	
+	$('#content_activities').append('<div id="separador"></div>');
+
+	$('#content_activities').append('<div class="act_detail"><span>Actividad '+(cantidad_actividad+1)+'</span><label>T. Optimista '+(cantidad_actividad+1)+': <input type="number" id="tiempo_o_'+cantidad_actividad+'" min="0" max="1000"/></label><label>T. Pesimista '+(cantidad_actividad+1)+': <input type="number" id="tiempo_p_'+cantidad_actividad+'" min="0" max="1000"/></label><label>T. Probable '+(cantidad_actividad+1)+': <input type="number" id="tiempo_pr_'+cantidad_actividad+'" min="0" max="1000"/></label><label>Costo Act. '+(cantidad_actividad+1)+': <input type="number" id="costo_'+cantidad_actividad+'" min="0" max="1000"/></label><label>Precede '+(cantidad_actividad+1)+': <input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+cantidad_actividad+'" onkeyUp="return ValNumero(this);" /></label></div>');
+
+	$('#content_activities').append('<input type="button" class="boton_agrega" id="act_detail'+(cantidad_actividad+1)+'" value="+" onClick="agregar_actividades_avanzado(this);">');
+	$('#content_activities').append('<div class="contact-but"><input type="button" id="cargart" value="Cargar Tiempo" onClick="javascript:carga_info();" /></div> <div class="contact-but"><input type="button" id="volvert" onClick="javascript:$(\'#info_proyecto\').show(); $(\'#content_activities\').hide();$(\'#actividades\').hide()" value="Regresar" /></div>');
 	cantidad_actividad++;
 }
 
@@ -287,7 +320,7 @@ $(document).ready(function(){
 	 		|| $('#n_gerente').val().length == 0 
 	 		|| /^\s*$/.test($('#nombre_p').val())
 	 		|| $('#m_tiempo').val() == '' ){
-       		todoCorrecto=false; alert('aca');
+       		todoCorrecto=false;
        	}
 
 		cantidad = 2;
@@ -295,8 +328,34 @@ $(document).ready(function(){
 		{
 			$('#error').html(null);
 			$('#actividades').html(null);
+			$('#actividades').show();
 			$('#actividades').append('<div id="blanco"></div><h4>Tiempos Actividades</h4><div class="contact-text" id="content_activities" ></div>');
 			cargar_actividades(cantidad);
+			$('#info_proyecto').hide();
+
+		}else{
+			$('#error').html('La cantidad debe ser Mayor a Cero');
+		}
+		
+	});
+
+	$('#cargar_a').click(function(){ 
+		todoCorrecto=true;
+	 	if ($('#n_proyecto').val() == null 
+	 		|| $('#n_gerente').val().length == 0 
+	 		|| /^\s*$/.test($('#nombre_p').val())
+	 		|| $('#m_tiempo').val() == '' ){
+       		todoCorrecto=false;
+       	}
+
+		cantidad = 2;
+		if(cantidad>0)
+		{
+			$('#error').html(null);
+			$('#actividades').html(null);
+			$('#actividades').show();
+			$('#actividades').append('<div id="blanco"></div><h4>Tiempos Actividades</h4><div class="contact-text" id="content_activities" ></div>');
+			cargar_actividades_avanzado(cantidad);
 			$('#info_proyecto').hide();
 
 		}else{
@@ -320,7 +379,7 @@ $(document).ready(function(){
 	});
 
 	$('#menu_pert_int').click(function(){
-		window.location="menu_pert.html";
+		window.location="pert_avanzado.html";
 	});
 
 	$('#menu_basico_int').click(function(){
