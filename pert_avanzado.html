@@ -60,9 +60,9 @@
 
       <div class="view-port" id="info_proyecto">
 
-      	<div class="div_create"><label for="n_proyecto">Nombre Proyecto <input type="text" name="n_proyecto" id="n_proyecto"></label></div>
-      	<div class="div_create"><label for="n_gerente">Nombre Gerente <input type="text" name="n_gerente" id="n_gerente"></label></div>
-      	<div class="div_create"><label for="f_inicio">Fecha Inicio <input type="date" name="f_inicio" id="f_inicio"></label></div>	
+      	<div class="div_create"><label for="n_proyecto">Nombre Proyecto <input type="text" name="n_proyecto" id="n_proyecto" required></label></div>
+      	<div class="div_create"><label for="n_gerente">Nombre Gerente <input type="text" name="n_gerente" id="n_gerente" required></label></div>
+      	<div class="div_create"><label for="f_inicio">Fecha Inicio <input type="date" name="f_inicio" id="f_inicio" required></label></div>	
       	<div class="div_create"><label for="m_tiempo">Medida de Tiempo 
       		<select name="m_tiempo" id="m_tiempo">
       			<option value="">--Seleccionar Medida--</option>
@@ -70,7 +70,7 @@
       			<option value="h">Hora</option>
       		</select>
       	</label></div>
-        <div class="div_create"><label for="f_inicio">Presupuesto<input type="number" name="presupuesto" id="presupuesto"></label></div>
+        <div class="div_create"><label for="f_inicio" required>Presupuesto<input type="number" name="presupuesto" id="presupuesto"></label></div>
       	<div class="div_create"><label for="obj">Objetivo  
       		<textarea name="obj" id="obj" cols="25" rows="5"></textarea>
       		</label>
