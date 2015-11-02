@@ -560,3 +560,32 @@ input.boton_agrega {
     top: -40px;
     margin: 0 5px 0 0px;
 }
+
+#header{
+  text-align: center; 
+  font-size: 2.5em; 
+  color: white;
+  background-color: #16A401; 
+}
+
+#header span{
+  display: block;
+  padding-top: 8px;
+  position: relative;
+}
+
+#grafica{
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.menu:nth-child(2) > span:nth-last-of-type(1){
+    position: relative;
+    left: 0%;
+    float: right;
+}
+
+.footer{
+  font-size: 1.3em !important;
+  color: white;
+}
