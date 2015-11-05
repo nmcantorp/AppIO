@@ -145,13 +145,7 @@ function alista_info()
 	var array_act = [];
 	var array_tiempo = [];
 	var result = Array(5);
-	for (var i = 0; i < antec.length; i++) { 
-		if( antec[i].value!=null && antec[i].value!='')
-		{
-			valida = true;
-		}		
-		array_act[i] = {antec:antec[i].value};
-	}
+
 	for (var i = 0; i < tiempos.length; i++) {
 		if( tiempos[i].value==null || tiempos[i].value<= 0 )
 		{
@@ -160,6 +154,22 @@ function alista_info()
 		}
 		array_tiempo[i] = {tiempo:tiempos[i].value};		
 	}	
+
+	for (var i = 0; i < antec.length; i++) { 
+		if( antec[i].value!=null && antec[i].value!='')
+		{
+			valida = true;
+			valida_antec = antec[i].value.split(',');
+			for (var k = 0; k < valida_antec.length; k++) {
+				if( parseInt(valida_antec[k]) > antec.length || (i+1) == parseInt(valida_antec[k]) )
+				{
+					valida = false;
+				}
+			};
+		}		
+		array_act[i] = {antec:antec[i].value};
+	}
+	//console.log(valida);return false;
 	/*console.log(array_act);
 	console.log(array_tiempo);*/
 	result[0]=array_act;
@@ -535,17 +545,20 @@ function graficar_avanzado()
 
 $(document).ready(function(){
 	var cantidad = 0;
-	$('#cargar').click(function(){ 
+	$('#cargar').click(function(){
 		todoCorrecto=true;
+		console.log($('#n_proyecto').val() + " - "+ $('#n_gerente').val().length + " - "+ /^\s*$/.test($('#nombre_p').val()) + " - " + $('#m_tiempo').val() + " - " + $('#f_inicio').val());
 	 	if ($('#n_proyecto').val() == null 
 	 		|| $('#n_gerente').val().length == 0 
 	 		|| /^\s*$/.test($('#nombre_p').val())
-	 		|| $('#m_tiempo').val() == '' ){
+	 		|| $('#m_tiempo').val() == '' 
+	 		|| $('#f_inicio').val() == null
+	 		|| $('#f_inicio').val() == '' ){
        		todoCorrecto=false;
        	}
-
+       	console.log(todoCorrecto);
 		cantidad = 2;
-		if(cantidad>0)
+		if(cantidad>0 && todoCorrecto)
 		{
 			$('#error').html(null);
 			$('#actividades').html(null);
@@ -555,7 +568,7 @@ $(document).ready(function(){
 			$('#info_proyecto').hide();
 
 		}else{
-			$('#error').html('La cantidad debe ser Mayor a Cero');
+			$('#error').html('Debe completar la información del formulario');
 		}
 		
 	});
@@ -565,12 +578,14 @@ $(document).ready(function(){
 	 	if ($('#n_proyecto').val() == null 
 	 		|| $('#n_gerente').val().length == 0 
 	 		|| /^\s*$/.test($('#nombre_p').val())
-	 		|| $('#m_tiempo').val() == '' ){
+	 		|| $('#m_tiempo').val() == ''
+	 		|| $('#f_inicio').val() == null
+	 		|| $('#f_inicio').val() == '' ){
        		todoCorrecto=false;
        	}
 
 		cantidad = 2;
-		if(cantidad>0)
+		if(cantidad>0 && todoCorrecto)
 		{
 			$('#error').html(null);
 			$('#actividades').html(null);
@@ -580,7 +595,7 @@ $(document).ready(function(){
 			$('#info_proyecto').hide();
 
 		}else{
-			$('#error').html('La cantidad debe ser Mayor a Cero');
+			$('#error').html('Debe completar la información del formulario');
 		}
 		
 	});
