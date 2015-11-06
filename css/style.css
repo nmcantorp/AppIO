@@ -609,6 +609,16 @@ input.boton_agrega {
     position: relative;
     top: -40px;
     margin: 0 5px 0 0px;
+    width: 5%;
+}
+
+input.boton_remover {
+    font-size: 1.5em;
+    padding: 0;
+    float: right;
+    position: relative;
+    top: -40px;
+    margin: 0 5px 0 0px;
 }
 
 #header{
@@ -638,4 +648,24 @@ input.boton_agrega {
 .footer{
   font-size: 1.3em !important;
   color: white;
+}
+
+
+
+/*jquery-ui*/
+
+div.ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix.ui-draggable-handle > button {
+    display: none;
+}
+
+span#ui-id-1 {
+    margin-left: 20px;
+}
+
+div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix > div > button {
+    margin: 5px 0px 5px 35%;
+}
+
+div#dialog-message {
+    padding-left: 10px;
 }
