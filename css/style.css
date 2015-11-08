@@ -1,6 +1,32 @@
+@font-face {
+    font-family: 'densia_sansregular';
+    src: url('font/densiasans/densiasans-webfont.eot');
+    src: url('font/densiasans/densiasans-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/densiasans/densiasans-webfont.woff2') format('woff2'),
+         url('font/densiasans/densiasans-webfont.woff') format('woff'),
+         url('font/densiasans/densiasans-webfont.ttf') format('truetype'),
+         url('font/densiasans/densiasans-webfont.svg#densia_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'boogalooregular';
+    src: url('font/boogaloo/boogaloo-regular-webfont.eot');
+    src: url('font/boogaloo/boogaloo-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/boogaloo/boogaloo-regular-webfont.woff2') format('woff2'),
+         url('font/boogaloo/boogaloo-regular-webfont.woff') format('woff'),
+         url('font/boogaloo/boogaloo-regular-webfont.ttf') format('truetype'),
+         url('font/boogaloo/boogaloo-regular-webfont.svg#boogalooregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body {
-  font-family: Helvetica Neue, serif;
-  font-size: 16px;
+  font-family: 'boogalooregular';
+  font-size: 19px;
   margin: 0;
   padding: 0;
 }
@@ -451,7 +477,7 @@ div#menu_pert_int {
   position: relative;
   height: 60px;
   border-radius: 10px;
-  width: 49%;
+  width: 40%;
   float: left;
   padding-top: 0;
   box-shadow: 0px 0px 12px 2px rgba(119, 119, 119, 0.75);
@@ -472,7 +498,7 @@ div#menu_basico_int {
   position: relative;
   height: 60px;
   border-radius: 10px;
-  width: 49%;
+  width: 40%;
   float: left;
   padding-top: 0;
   box-shadow: 0px 0px 12px 2px rgba(119, 119, 119, 0.75);
@@ -494,7 +520,7 @@ div#menu_abrir_int {
   position: relative;
   height: 60px;
   border-radius: 10px;
-  width: 49%;
+  width: 40%;
   float: left;
   padding-top: 0;
   box-shadow: 0px 0px 12px 2px rgba(119, 119, 119, 0.75);
@@ -504,10 +530,10 @@ div#menu_abrir_int {
 
 
 .boton_menu_int span {
-    margin-top: -3%;
+    margin-top: 0%;
     position: absolute;
     margin-left: 30%;
-    font-size: 4em;
+    font-size: 3.2em;
 }
 
 .view-port, .track .inner, .slider-container .item.cover {
@@ -603,7 +629,7 @@ div#separador {
 }
 
 input.boton_agrega {
-    font-size: 1.5em;
+    font-size: 0.8em;
     padding: 0;
     float: right;
     position: relative;
@@ -648,6 +674,11 @@ input.boton_remover {
 .footer{
   font-size: 1.3em !important;
   color: white;
+}
+
+#content_dialog
+{
+  padding: 0 15px;
 }
 
 

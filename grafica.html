@@ -15,8 +15,12 @@
 <link rel="stylesheet" href="css/responsive.css" type="text/css" media="screen" charset="utf-8">
 <link href="css/style_2.css" rel='stylesheet' type='text/css' />
 
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
+
+
 <script src="js/jquery.min.js"></script>  
+<link rel="stylesheet" href="js/jqueryui/jquery-ui.theme.css" type="text/css" media="screen" charset="utf-8">
+<script src="js/jqueryui/jquery-ui.js"></script>
 <script src="js/funciones.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
@@ -29,6 +33,7 @@
 var actividades;
 var tiempo;
 var valida; 
+var nombres;
     /**
      * Funcion que captura las variables pasados por GET
      * http://www.lawebdelprogramador.com/pagina.html?id=10&pos=3
@@ -63,6 +68,8 @@ var valida;
         actividades = JSON.parse(localStorage["actividad"]);
         tiempo = JSON.parse(localStorage["tiempo"]);
         valida = JSON.parse(localStorage["validacion"]);
+        nombres = JSON.parse(localStorage["nombre"]);
+        fecha = JSON.parse(localStorage["fecha"]);
        
     }
     </script>
@@ -94,6 +101,7 @@ var valida;
       data.addColumn('string', 'Dependencies');
       console.log(actividades);
       console.log(tiempo);
+      console.log(nombres);
       console.log(valida);
       var datos = {};
       var arreglo = Array();
@@ -107,9 +115,10 @@ var valida;
           var predecesor = ""+actividades[i]['antec']+"";
         }
         var tiempo_final = parseInt(tiempo[i]['tiempo']);
+        var nombre_final = nombres[i]['nombre'];        
         data_final = [
                 ""+(i+1)+"" ,
-                "Actividad "+(i+1)+"" ,
+                ""+nombre_final+"",
                 null,
                 null,
                 daysToMilliseconds(tiempo_final) ,
@@ -127,8 +136,15 @@ var valida;
           return [value];
       });
 
+      fecha_separadas = fecha.split("-");
 
+      console.log(fecha_separadas);
       console.log(array);
+      g_dia = parseInt(fecha_separadas[2]);
+      g_mes = parseInt(fecha_separadas[1]);
+      g_anio = parseInt(fecha_separadas[0]);
+
+      console.log(new Date ( g_anio , g_mes , g_dia));
 
       var options = {
         height: 250,
@@ -142,8 +158,8 @@ var valida;
 	        	criticalPathEnabled: true,
 	            criticalPathStyle: {
               	stroke: '#e64a19',
-              	strokeWidth: 4,
-              	defaultStartDate:new Date ( 2015 , mes , dia),
+              	strokeWidth: 2,
+              	defaultStartDate:new Date ( g_anio , g_mes , g_dia),
               	labelMaxWidth:100
             },
         	arrow:{angle: 100,
@@ -158,7 +174,7 @@ var valida;
       var chart = new google.visualization.GanttChart(document.getElementById('chart_div'));
 
       chart.draw(data, options);
-      var selection = chart.getSelection();
+      //var selection = chart.getSelection();
 
     }
   </script>

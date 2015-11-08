@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=8" />
 
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen" charset="utf-8">
   <link rel="stylesheet" href="css/gh-buttons.css" type="text/css" media="screen" charset="utf-8">
   <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8">
   <link rel="stylesheet" href="css/responsive.css" type="text/css" media="screen" charset="utf-8">
@@ -24,9 +25,6 @@
   <script type="text/javascript" src="src/plugins/jquery.silver_track.css3_animation.js" charset="utf-8"></script>
   <script type="text/javascript" src="src/plugins/jquery.silver_track.circular_navigator.js" charset="utf-8"></script>
 
-  <link rel="stylesheet" href="js/jqueryui/jquery-ui.theme.css" type="text/css" media="screen" charset="utf-8">
-  <script src="js/jqueryui/jquery-ui.js"></script>
-  
   <!-- <script type="text/javascript" src="js/script.js" charset="utf-8"></script>
   <script type="text/javascript" src="js/example1.js" charset="utf-8"></script> -->
   <script type="text/javascript" src="js/example2_and_3.js" charset="utf-8"></script>
@@ -51,32 +49,71 @@
   </script>
 </head>
 <body>
-  <div id="header" style="height: 70px; margin-bottom: 30px;"><span>APPERT</span></div>
+	<style>
+		.view-port, .track .inner, .slider-container .item.cover {
+		    height: auto !important;
+		    padding-left: 10px;
+		}
+	</style>
+  <div id="header" style="height: 70px; margin-bottom: 30px; background-color: #16A401;"><span>AppIO Learning</span></div>
   <div class="track example-2">
-    <div class="inner">
-      <h2>Menu PERT</h2>
+    <h2>&nbsp;&nbsp;Contactenos</h2>
+    <div class="inner" id="step_one">
 
-      <div class="view-port">
-    <div class="menu">
-      <span class="titulo_menu">PERT Basico</span>
-		<div class="boton_menu_int" id="menu_basico_int"><span>B</span></div>
-    </div>
-    <div class="menu">
-      <span class="titulo_menu">PERT Avanzado</span>
-    <div class="boton_menu_int" id="menu_pert_int"><span>A</span></div>
-    </div>
-    <div class="menu">
-      <span class="titulo_menu">Abir Proyecto</span>
-		<div class="boton_menu_int" id="menu_abrir_int"><span>O</span></div>
-    <div id="regresar"><a href="menu.html">Regresar</a></div>
-    </div>
+      <div class="view-port" id="info_proyecto">
+        <center>
+        <table >
+          <tr>
+            <td>
+      	      <div class="div_create"><label for="n_proyecto">Nombre &nbsp;&nbsp;
+            </td>
+            <td>
+              <input type="text" name="n_proyecto" id="n_proyecto" required></label></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            	<div class="div_create"><label for="n_gerente">Asunto &nbsp;&nbsp; 
+            </td>
+            <td>     
+              <input type="text" name="n_gerente" id="n_gerente" required></label></div>
+      	   </td>
+          </tr>
+          <tr>
+            <td>  
+              <div class="div_create"><label for="f_inicio" required>Correo &nbsp;&nbsp;
+            </td>
+            <td>      
+              <input type="text" name="presupuesto" id="presupuesto"></label></div>
+            </td>
+          </tr>
+          <tr>
+            <td> 
+      	       <div class="div_create"><label for="obj">Descripci&oacute;n &nbsp;&nbsp;   
+      		  </td>
+            <td>
+              <textarea name="obj" id="obj" cols="22" rows="5"></textarea>
+      		    </label>
+      	       </div>	
+            </td>
+          </tr>
+        </table>
+      </center>
+      	<div class="botones">
+      		<div><a href="menu.html">Enviar</a></div>
+      		<div><a href="menu.html">Regresar</a></div>
+      	</div>	
     
       </div>
 
       <div class="bullet-pagination"></div>
-      <!-- <div class="actions button-group">
-        <a href="#" class="button primary icon reload">Restart</a>
-      </div> -->
+      <div id="actividades"></div>
+    </div>
+
+    <div class="contact-bottom" id="step_two" style="display: none;">
+      <!-- Campo para cargar tabla de resumen -->
+      <div class="col-md-7 contact-left"><h4>Resumen Actividades</h4></div>
+      <div class="table-responsive"></div>
     </div>
 
     <div class="pagination">
@@ -84,7 +121,6 @@
       <a href="#" class="next disabled"></a>
     </div>
   </div>
-
   <div class="footer" style="position:relative;width: 100%;bottom: 0; height: 100%; margin-top: 40px;">
       <div class="container" style="width: auto;">
           <div class="footer-main">
@@ -104,6 +140,5 @@
       <a href="#home" id="toTop" class="scroll" style="display: block;"> 
         <span id="toTopHover" style="opacity: 1;"> </span></a>
     </div>
-
 </body>
 </html>
