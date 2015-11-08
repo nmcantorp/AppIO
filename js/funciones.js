@@ -234,7 +234,7 @@ function alista_info()
 function alista_info_avanzado()
 {
 	var antec 				= document.getElementsByName("antec");
-	var fecha_inicial	= document.getElementsByName("f_inicio");
+	var fecha_inicial		= document.getElementsByName("f_inicio");
 	var tiempos_o 			= $("[id^='tiempo_o']");
 	var tiempos_p 			= $("[id^='tiempo_e']");
 	var tiempos_pr 			= $("[id^='tiempo_pr']");
@@ -277,6 +277,12 @@ function alista_info_avanzado()
 		array_nombre[i] = {nombre:nombre_act[i].value};
 	}
 
+	array_t_optimista[0]	={}
+	array_t_pesimista[0]	={}
+	array_t_probable[0]		={}
+	array_t_esperado[0]		={}
+	array_d_estandar[0]		={}
+	array_varianza[0]		={}
 	for (var i = 0; i < tiempos_o.length; i++) {
 		if( tiempos_o[i].value==null || tiempos_o[i].value<= 0  || tiempos_p[i].value==null || tiempos_p[i].value<= 0 || tiempos_pr[i].value==null || tiempos_pr[i].value<= 0 )
 		{
@@ -298,12 +304,6 @@ function alista_info_avanzado()
 		$('#dialog-message').html('<br><p>Algunas actividades dependen de la ejecución de otras, hay que evaluar cuales son las actividades predecesoras de cada una de ella</p>');
 		$('#dialog-message').dialog("open");
 	}
-	array_t_optimista[0]	={}
-	array_t_pesimista[0]	={}
-	array_t_probable[0]		={}
-	array_t_esperado[0]		={}
-	array_d_estandar[0]		={}
-	array_varianza[0]		={}
 
 
 
@@ -405,8 +405,8 @@ function carga_info_avanzado()
 	array_t_pe 		= result[4];
 	array_d_estandar= result[8];
 	array_varianza	= result[9];
-	array_nombre	= result[10];
-	
+	array_nombres	= result[10];
+
 	if(valida)
 	{
 		$('#error').html(null);		
@@ -416,7 +416,7 @@ function carga_info_avanzado()
 		 * Se genera la tabla con la informacion en resumen de las actividades
 		 */
 		
-		info_to_load = '<div style="overflow-x: auto;"><table class="table table-bordered"><thead><tr>';
+		info_to_load = '<style>div#step_two{margin-bottom: 120px;}</style><div style="overflow-x: auto;"><table class="table table-bordered"><thead><tr>';
 		info_to_load += '<th>Actividad</th><th style="text-align:center;">Predecesor</th><th style="text-align:center;">a</th><th style="text-align:center;">m</th><th style="text-align:center;">b</th><th style="text-align:center;">te</th><th style="text-align:center;">Desv. Est</th><th style="text-align:center;">Varianza</th></tr></thead>';
 		info_to_load += '<tbody>';
 		for (var i = 0; i < tiempos.length; i++) {
