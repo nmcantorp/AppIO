@@ -10,15 +10,15 @@ class ClassConexion
 	public $user 	= 'root';
 	public $pass	= '';*/
 
-	public $nomBD 	= 'sialen5_appert';
+	/*public $nomBD 	= 'sialen5_appert';
 	public $user 	= 'sialen5_appert';
-	public $pass	= 'Appert12345';
+	public $pass	= 'Appert12345';*/
 
-/*	public $host 	= 'localhost';
+	//public $host 	= 'localhost';
 	public $nomBD 	= 'appert';
 	public $user 	= 'root';
 	public $pass	= '';
-	*/
+	
 	public $conexion; public $total_consultas;
 
 	public function MySQL(){ 

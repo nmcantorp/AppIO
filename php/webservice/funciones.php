@@ -234,7 +234,21 @@ function saveDetalleProyect($data, $id_proyecto)
                  '".$id_proyecto."')";
 
     $objConnect->consulta($query); 
-    $result = $objConnect->insert_id(); 
+
+    $query = "  SELECT
+                Max(actividad.Actividad_Id) as 'id_act'
+                FROM
+                actividad
+                WHERE
+                actividad.Proyecto_Id = $id_proyecto";
+
+    $result_detalle_temp = $objConnect->consulta($query); 
+    if($objConnect->num_rows($result_detalle_temp)>0){ 
+        $conteo=0;
+        while($resultados = $objConnect->fetch_array($result_detalle_temp)){ 
+            $result_detalle = $resultados['id_act']; 
+        }
+    }
 
     if(isset($data['actividad'][$i]['antec']) && !is_null($data['actividad'][$i]['antec']) && $data['actividad'][$i]['antec'] != '')
     {
@@ -248,20 +262,19 @@ function saveDetalleProyect($data, $id_proyecto)
                     WHERE
                     actividad.Numero_Actividad IN (".$data['actividad'][$i]['antec'].")
                     AND actividad.Proyecto_Id = $id_proyecto";
-        
+        //die($result_detalle);
         $consulta = $objConnect->consulta($query);
 
         if($objConnect->num_rows($consulta)>0){ 
             $conteo=0;
             while($resultados = $objConnect->fetch_array($consulta)){ 
                     //print_r($resultados);die();
-                    $result_int['Proyecto_Id'] = $resultados['Proyecto_Id'];
+                    $result_int['Proyecto_Id']      = $resultados['Proyecto_Id'];
                     $result_int['Nombre_Actividad'] = $resultados['Nombre_Actividad'];
-                    $result_int['Actividad_Id'] = $resultados['Actividad_Id'];
+                    $result_int['Actividad_Id']     = $result_detalle;
                     $result_int['Numero_Actividad'] = $resultados['Numero_Actividad'];
-            }
             //print_r($result_int);die();
-        $query = "  INSERT INTO actividad_predecesora (
+            $query = "  INSERT INTO actividad_predecesora (
                     actividad_predecesora.Nombre_Actividad,
                     actividad_predecesora.Numero_Actividad,
                     actividad_predecesora.Actividad_Id
@@ -271,13 +284,14 @@ function saveDetalleProyect($data, $id_proyecto)
                  '".$result_int['Numero_Actividad']."',
                  '".$result_int['Actividad_Id']."')";
         //die($query);
-        $objConnect->consulta($query); 
-        $result_final = $objConnect->insert_id();  
+            $objConnect->consulta($query); 
+            $result_final = $objConnect->insert_id();  
+            }
         }
     }
     }
 
-    return $result;
+    return $result_detalle;
 }
 
 function saveDetalleProyectA($data, $id_proyecto)
@@ -315,7 +329,22 @@ function saveDetalleProyectA($data, $id_proyecto)
                  '".$id_proyecto."')";
 
     $objConnect->consulta($query); 
-    $result = $objConnect->insert_id(); 
+    $result = $objConnect->insert_id();
+
+    $query = "  SELECT
+                Max(actividad.Actividad_Id) as 'id_act'
+                FROM
+                actividad
+                WHERE
+                actividad.Proyecto_Id = $id_proyecto";
+
+    $result_detalle_temp = $objConnect->consulta($query); 
+    if($objConnect->num_rows($result_detalle_temp)>0){ 
+        $conteo=0;
+        while($resultados = $objConnect->fetch_array($result_detalle_temp)){ 
+            $result_detalle = $resultados['id_act']; 
+        }
+    }
 
     if(isset($data['actividad'][$i]['antec']) && !is_null($data['actividad'][$i]['antec']) && $data['actividad'][$i]['antec'] != '')
     {
@@ -336,13 +365,12 @@ function saveDetalleProyectA($data, $id_proyecto)
             $conteo=0;
             while($resultados = $objConnect->fetch_array($consulta)){ 
                     //print_r($resultados);die();
-                    $result_int['Proyecto_Id'] = $resultados['Proyecto_Id'];
+                    $result_int['Proyecto_Id']      = $resultados['Proyecto_Id'];
                     $result_int['Nombre_Actividad'] = $resultados['Nombre_Actividad'];
-                    $result_int['Actividad_Id'] = $resultados['Actividad_Id'];
+                    $result_int['Actividad_Id']     = $result_detalle;
                     $result_int['Numero_Actividad'] = $resultados['Numero_Actividad'];
-            }
             //print_r($result_int);die();
-        $query = "  INSERT INTO actividad_predecesora (
+            $query = "  INSERT INTO actividad_predecesora (
                     actividad_predecesora.Nombre_Actividad,
                     actividad_predecesora.Numero_Actividad,
                     actividad_predecesora.Actividad_Id
@@ -351,9 +379,10 @@ function saveDetalleProyectA($data, $id_proyecto)
                 ('".$result_int['Nombre_Actividad']."',
                  '".$result_int['Numero_Actividad']."',
                  '".$result_int['Actividad_Id']."')";
-        //die($query);
-        $objConnect->consulta($query); 
-        $result_final = $objConnect->insert_id();  
+            //die($query);
+            $objConnect->consulta($query); 
+            $result_final = $objConnect->insert_id();  
+            }
         }
     }
     }

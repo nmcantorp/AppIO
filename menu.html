@@ -48,7 +48,15 @@
         defaultLayout: "web"
       });
     });
+
+    /*function NoBack(){
+      console.log(history.length);
+      history.go(1);
+    }*/
+    if(window.history.forward(1) != null)   window.history.clear();
   </script>
+
+  
 </head>
 <body>
   <div id="header" style="height: 70px; margin-bottom: 30px;"><span>APPERT</span></div>

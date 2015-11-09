@@ -647,6 +647,17 @@ input.boton_remover {
     margin: 0 5px 0 0px;
 }
 
+.borrar_act {
+    float: right;
+    /* margin-right: 0%; */
+    background-color: red;
+    color: white;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    border-radius: 50%;
+}
+
 #header{
   text-align: center; 
   font-size: 2.5em; 

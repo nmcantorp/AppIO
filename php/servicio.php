@@ -1,5 +1,5 @@
 <?php 
-//header("Content-Type:application/json");
+header("Content-Type:application/json");
 require_once('webservice/funciones.php');
 
 switch ($_REQUEST['ac']) {
@@ -18,11 +18,8 @@ switch ($_REQUEST['ac']) {
 		}else{
 			$medida = 1;
 		}
-		$complejidad = 1; 
-		if($valores['objetivo'])
-		{
-			$complejidad = 2;
-		}
+
+		$complejidad = 1;
 
 		$proyecto['medida'] 	= $medida;
 		$proyecto['complejidad']= $complejidad;
@@ -53,11 +50,9 @@ switch ($_REQUEST['ac']) {
 		}else{
 			$medida = 1;
 		}
-		$complejidad = 1; 
-		if($valores['presupuesto'])
-		{
-			$complejidad = 2;
-		}
+
+		$complejidad = 2;
+
 
 		$proyecto['medida'] 	= $medida;
 		$proyecto['complejidad']= $complejidad;

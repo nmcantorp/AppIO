@@ -30,6 +30,13 @@ $(document).on('ready',document, function(){
     $( "#dialog_message_concept" ).dialog("close");
 });
 
+/*Reorganizar consecutivo*/
+function organizar()
+{
+	cantidad_temp = document.getElementsByName("antec").length
+	cantidad_actividad = cantidad_temp;
+}
+
 /*Calculo de Tiempo esperado*/
 function tiempo_esperado(tiempo_op, tiempo_pe, tiempo_pr)
 {
@@ -138,9 +145,9 @@ function agregar_actividades(value, tiempo){
 
 	$('#content_activities .contact-but > input').remove();
 	
-	$('#content_activities').append('<div id="separador"></div>');
+	$('#content_activities').append('<div id="separador" class="separador'+(cantidad_actividad+1)+'"></div>');
 
-	$('#content_activities').append('<div class="act_detail"><table><tr><td><label>Nombre Actividad '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="text" id="actividad_'+cantidad_actividad+'" /></td></tr><tr><td><label>Tiempo actividad '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="number" id="tiempo_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>Precede '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+cantidad_actividad+'" onkeyUp="return ValNumero(this, 100);" /></label></td></tr></table></div>');
+	$('#content_activities').append('<div class="act_detail"><div class="borrar_act" onClick="javascript:$(this).parent().remove(); $(\'#act_detail'+(cantidad_actividad+1)+'\').remove(); $(\'.separador'+(cantidad_actividad+1)+'\').remove(); organizar();">X</div><table><tr><td><label>Nombre Actividad '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="text" id="actividad_'+cantidad_actividad+'" /></td></tr><tr><td><label>Tiempo actividad '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="number" id="tiempo_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>Precede '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+cantidad_actividad+'" onkeyUp="return ValNumero(this, 100);" /></label></td></tr></table></div>');
 
 	$('#content_activities').append('<input type="button" class="boton_agrega" id="act_detail'+(cantidad_actividad+1)+'" value="+" onClick="agregar_actividades(this,\'' + tiempo + '\');">');
 	$('#content_activities').append('<div class="contact-but"><input type="button" id="cargart" value="Cargar Tiempo" onClick="javascript:carga_info();" /></div> <div class="contact-but"><input type="button" id="volvert" onClick="javascript:$(\'#info_proyecto\').show(); $(\'#content_activities\').hide(); $(\'#actividades\').hide();" value="Regresar" /></div>');
@@ -151,9 +158,9 @@ function agregar_actividades_avanzado(value, tiempo){
 
 	$('#content_activities .contact-but > input').remove();
 	
-	$('#content_activities').append('<div id="separador"></div>');
+	$('#content_activities').append('<div id="separador" class="separador'+(cantidad_actividad+1)+'"></div>');
 
-	$('#content_activities').append('<div class="act_detail"><span>Actividad '+(cantidad_actividad+1)+'</span><table><tr><td><label>Nombre Actividad '+(cantidad_actividad+1)+': </td><td>&nbsp;<input type="text" id="actividad_'+cantidad_actividad+'" /></td></tr><tr><td><label>T. Optimista '+(cantidad_actividad+1)+': </td><td>&nbsp;<input type="number" id="tiempo_o_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>T. Pesimista '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="number" id="tiempo_e_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>T. Probable '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="number" id="tiempo_pr_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>Costo Act. '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="number" id="costo_'+cantidad_actividad+'" min="0" max="1000"/></label></td></tr><tr><td><label>Precede '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+cantidad_actividad+'" onkeyUp="return ValNumero(this, 100);" /></label></td></tr></table></div>');
+	$('#content_activities').append('<div class="act_detail"><div class="borrar_act" onClick="javascript:$(this).parent().remove(); $(\'#act_detail'+(cantidad_actividad+1)+'\').remove(); $(\'.separador'+(cantidad_actividad+1)+'\').remove(); organizar();">X</div><span>Actividad '+(cantidad_actividad+1)+'</span><table><tr><td><label>Nombre Actividad '+(cantidad_actividad+1)+': </td><td>&nbsp;<input type="text" id="actividad_'+cantidad_actividad+'" /></td></tr><tr><td><label>T. Optimista '+(cantidad_actividad+1)+': </td><td>&nbsp;<input type="number" id="tiempo_o_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>T. Pesimista '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="number" id="tiempo_e_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>T. Probable '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="number" id="tiempo_pr_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>Costo Act. '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="number" id="costo_'+cantidad_actividad+'" min="0" max="1000"/></label></td></tr><tr><td><label>Precede '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+cantidad_actividad+'" onkeyUp="return ValNumero(this, 100);" /></label></td></tr></table></div>');
 
 	$('#content_activities').append('<input type="button" class="boton_agrega" id="act_detail'+(cantidad_actividad+1)+'" value="+" onClick="agregar_actividades_avanzado(this,\'' + tiempo + '\');">');
 	$('#content_activities').append('<div class="contact-but"><input type="button" id="cargart" value="Cargar Tiempo" onClick="javascript:carga_info_avanzado();" /></div> <div class="contact-but"><input type="button" id="volvert" onClick="javascript:$(\'#info_proyecto\').show(); $(\'#content_activities\').hide();$(\'#actividades\').hide()" value="Regresar" /></div>');
@@ -395,7 +402,7 @@ function carga_info()
 		$('#step_one').show();
 		$('#step_two').hide();
 	}
-	
+	$('#header').scrollTo('fast');
 	
 	//console.log(tiempos);
 	//console.log(antec);
@@ -454,7 +461,7 @@ function carga_info_avanzado()
 		$('#step_one').show();
 		$('#step_two').hide();
 	}
-	
+	$('#header').scrollTo('fast');
 	
 	//console.log(tiempos);
 	//console.log(antec);
@@ -744,7 +751,7 @@ $(document).ready(function(){
 			$('#actividades').append('<div id="blanco"></div><h4>Tiempos Actividades</h4><div class="contact-text" id="content_activities" ></div>');
 			if($('#m_tiempo').val() == 'd' )
 			{
-				medida_tiempo = "Días";
+				medida_tiempo = "D&iacute;as";
 			}else{
 				medida_tiempo = "Horas";				
 			}
@@ -783,7 +790,7 @@ $(document).ready(function(){
 			$('#actividades').append('<div id="blanco"></div><h4>Tiempos Actividades</h4><div class="contact-text" id="content_activities" ></div>');
 			if($('#m_tiempo').val() == 'd' )
 			{
-				medida_tiempo = "Días";
+				medida_tiempo = "D&iacute;as";
 			}else{
 				medida_tiempo = "Horas";				
 			}
@@ -809,7 +816,7 @@ $(document).ready(function(){
 	/*Menu*/
 
 	function ingresar(){
-		window.location="menu.html";
+		window.location.replace("menu.html");
 	}
 
 	$('#menu_pert').click(function(){
