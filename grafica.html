@@ -34,6 +34,18 @@ var actividades;
 var tiempo;
 var valida; 
 var nombres;
+var nom_gerente;
+var nom_proyecto;
+var m_tiempo;
+var objetivo;
+var cantidad;
+var varianza;
+var probable;
+var pesimista;
+var optimista;
+var desviacion;
+var presupuesto;
+var costo;
     /**
      * Funcion que captura las variables pasados por GET
      * http://www.lawebdelprogramador.com/pagina.html?id=10&pos=3
@@ -60,17 +72,67 @@ var nombres;
             return get;
         }
     }
+
+    function save()
+    {
+      if(varianza == null)
+      {
+        valores = {actividad: actividades, tiempo: tiempo, nombre: nombres, fecha: fecha, gerente:nom_gerente, proyecto:nom_proyecto, medida:m_tiempo, objetivo: objetivo, cantidad: cantidad};
+         console.log(nom_proyecto);
+        $.ajax({
+          //url: '/path/to/file',
+          url: 'http://www.sialen.com/webservice/servicio.php',
+          type: 'POST',
+          dataType: 'jsonp',
+          data: {ac: 'save', data: valores },
+        })
+        .done(function(result) {
+          console.log(result.responseText);
+        })
+        .fail(function(result) {
+          console.log(result.responseText);
+        });
+      }else{
+        valores = {actividad: actividades, tiempo: tiempo, nombre: nombres, fecha: fecha, gerente:nom_gerente, proyecto:nom_proyecto, medida:m_tiempo, objetivo: objetivo, cantidad: cantidad, varianza:varianza, probable:probable, pesimista:pesimista, optimista:optimista, desviacion:desviacion, presupuesto:presupuesto, costo:costo};
+         console.log(nom_proyecto);
+        $.ajax({
+          //url: '/path/to/file',
+          url: 'http://www.sialen.com/webservice/servicio.php',
+          type: 'POST',
+          dataType: 'jsonp',
+          data: {ac: 'save_a', data: valores },
+        })
+        .done(function(result) {
+          console.log(result.responseText);
+        })
+        .fail(function(result) {
+          console.log(result.responseText);
+        });
+      }
+      
+    }
  
     window.onload = function()
     {
         // Cogemos los valores pasados por get
-        var valores=getGET();
-        actividades = JSON.parse(localStorage["actividad"]);
-        tiempo = JSON.parse(localStorage["tiempo"]);
-        valida = JSON.parse(localStorage["validacion"]);
-        nombres = JSON.parse(localStorage["nombre"]);
-        fecha = JSON.parse(localStorage["fecha"]);
-       
+        var valores   =getGET();
+        actividades   = JSON.parse(localStorage["actividad"]);
+        tiempo        = JSON.parse(localStorage["tiempo"]);
+        valida        = JSON.parse(localStorage["validacion"]);
+        nombres       = JSON.parse(localStorage["nombre"]);
+        fecha         = JSON.parse(localStorage["fecha"]);
+        nom_gerente   = localStorage["n_gerente"];
+        nom_proyecto  = localStorage["n_proyecto"];
+        m_tiempo      = localStorage["m_tiempo"];
+        objetivo      = localStorage["objetivo"];
+        cantidad      = localStorage["cantidad"];
+        varianza      = JSON.parse(localStorage["varianza"]);
+        probable      = JSON.parse(localStorage["probable"]);
+        pesimista     = JSON.parse(localStorage["pesimista"]);
+        optimista     = JSON.parse(localStorage["optimista"]);
+        desviacion    = JSON.parse(localStorage["desviacion"]);
+        presupuesto   = JSON.parse(localStorage["presupuesto"]);
+        costo         = JSON.parse(localStorage["costo"]);
     }
     </script>
  
@@ -178,7 +240,7 @@ var nombres;
 
     }
   </script>
-  <div id="header" style="height: 70px; margin-bottom: 30px; background-color: #16A401;"><span>AppIO Learning</span></div>
+  <div id="header" style="height: 70px; margin-bottom: 30px; background-color: #16A401;"><span>APPERT</span></div>
   <div class="contact">
     <div class="container" style="width: auto !important;">
       <div class="contact-bottom" id="step_one" >
@@ -192,7 +254,7 @@ var nombres;
   <div id="grafica"><div id="chart_div"></div></div>
 
   <div id="info_graf">
-    
+    <div id="save_proyect" onclick="javascript:save();">Guardar</div>
   </div>
   <!--start-footer-->
 
@@ -201,7 +263,7 @@ var nombres;
           <div class="footer-main">
               <div class="col-md-6 footer-left">
                   <ul>
-                      <li><a href="#">Nosotros<!-- <span></span> --></a></li>
+                      <li><a href="#"><!--Nosotros <span></span> --></a></li>
                       <li><a href="#"><!-- <span> </span> --></a></li>
                       <li><a href="#"><!-- <span> </span> --></a></li>
                   </ul>

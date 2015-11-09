@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+
+    <!--
+        Personalice la directiva de seguridad de contenido en la etiqueta meta como sea necesario. Agregue "unsafe-inline" a default-src para permitir JavaScript insertado.
+        Para obtener más detalles, consulte http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <title>pruebam</title>
+
+    <!-- Referencias de pruebam -->
+    <link href="css/index.css" rel="stylesheet" />
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src='js/Swipe-master/swipe.js' type="text/javascript"></script>
+    <script src="js/funciones.js" type="text/javascript"></script>
+</head>
+<body>
+<style>
+    /* Swipe 2 required styles */
+
+    .swipe {
+        overflow: hidden;
+        visibility: hidden;
+        position: relative;
+    }
+
+    .swipe-wrap {
+        overflow: hidden;
+        position: relative;
+    }
+
+        .swipe-wrap > div {
+            float: left;
+            width: 100%;
+            position: relative;
+        }
+
+    /* END required styles */
+</style>
+
+    <!-- Referencia de Cordova que se agrega a la aplicación cuando se compila. -->
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+
+    <script src="scripts/index.js"></script>
+    <div id='mySwipe' style='max-width:500px;margin:0 auto' class='swipe'>
+        <div class='swipe-wrap'>
+            <div><b><img src="images/tutorial1.jpg" alt="" style="width: 97%;"></b></div>
+            <div><b><img src="images/tutorial2.jpg" alt="" style="width: 97%;"></b></div>
+            <div><b><img src="images/tutorial3.jpg" alt="" style="width: 97%;"></b></div>
+            <div><b><img src="images/tutorial4.jpg" alt="" style="width: 97%;"></b></div>
+            <div><b><img src="images/tutorial5.jpg" alt="" style="width: 97%;"></b></div>
+            <!-- <div><b>1</b></div> -->
+        </div>
+    </div>
+    <div id="btn_omitir">
+        <a href="menu.html"><button onclick='javascript:ingresar();'>Omitir</button></a>
+    </div>
+    <script>
+
+        // pure JS
+        var elem = document.getElementById('mySwipe');
+        window.mySwipe = Swipe(elem, {
+          // startSlide: 4,
+          // auto: 3000,
+          continuous: false,
+          // disableScroll: true,
+          // stopPropagation: true,
+          // callback: function(index, element) {},
+          // transitionEnd: function(index, element) {}
+        });
+
+        // with jQuery
+        // window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
+
+    </script>
+</body>
+</html>

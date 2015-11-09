@@ -58,28 +58,56 @@
 		    padding-left: 10px;
 		}
 	</style>
-  <div id="header" style="height: 70px; margin-bottom: 30px; background-color: #16A401;"><span>AppIO Learning</span></div>
+  <div id="header" style="height: 70px; margin-bottom: 30px; background-color: #16A401;"><span>APPERT</span></div>
   <div class="track example-2">
     <h2>Creación de PERT básico</h2>
     <div class="inner" id="step_one">
 
       <div class="view-port" id="info_proyecto">
-
-      	<div class="div_create"><label for="n_proyecto">Nombre Proyecto <input type="text" name="n_proyecto" id="n_proyecto"></label></div>
-      	<div class="div_create"><label for="n_gerente">Nombre Gerente <input type="text" name="n_gerente" id="n_gerente"></label></div>
-      	<div class="div_create"><label for="f_inicio">Fecha Inicio <br><input type="date" name="f_inicio" id="f_inicio" style="line-height: 20px !important;"></label></div>	
-      	<div class="div_create"><label for="m_tiempo">Medida de Tiempo <br>
+        <table>
+          <tr>
+            <td>
+      	<div class="div_create"><label for="n_proyecto">Nombre Proyecto: &nbsp;
+        <br>
+          <input size="42" type="text" name="n_proyecto" id="n_proyecto"></label></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+      	<div class="div_create"><label for="n_gerente">Nombre Gerente: &nbsp;
+        <br>
+          <input size="42" type="text" name="n_gerente" id="n_gerente"></label></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+      	<div class="div_create"><label for="f_inicio">Fecha Inicio: &nbsp;
+        <br>
+          <input size="30" type="date" name="f_inicio" id="f_inicio" style="line-height: 20px !important;"></label></div>	
+        </td>
+      </tr>
+      <tr>
+        <td>
+      	<div class="div_create"><label for="m_tiempo">Medida de Tiempo: &nbsp;
+        <br>
       		<select name="m_tiempo" id="m_tiempo" style="line-height: 22px !important;">
       			<option value="">--Selección Medida--</option>
       			<option value="d">Días</option>
       			<option value="h">Hora</option>
       		</select>
       	</label></div>
-      	<div class="div_create"><label for="obj">Objetivo  <br>
-      		<textarea name="obj" id="obj" cols="33" rows="5"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      	<div class="div_create"><label for="obj">Objetivo:  &nbsp;
+        
+      		<textarea name="obj" id="obj" cols="40" rows="5"></textarea>
       		</label>
       	</div>	
-
+      </td>
+    </tr>
+  </table>
       	<div class="botones">
       		<div id="cargar">Crear</div>
       		<div><a href="menu_pert.html">Regresar</a></div>
@@ -107,7 +135,7 @@
           <div class="footer-main">
               <div class="col-md-6 footer-left">
                   <ul>
-                      <li><a href="#">Nosotros<!-- <span></span> --></a></li>
+                      <li><a href="#"><!--Nosotros <span></span> --></a></li>
                       <li><a href="#"><!-- <span> </span> --></a></li>
                       <li><a href="#"><!-- <span> </span> --></a></li>
                   </ul>

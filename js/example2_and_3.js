@@ -28,16 +28,16 @@ $(function() {
       onChange: function(track, options, event) {
         track.options.mode = "horizontal";
         track.options.autoHeight = false;
-        track.options.perPage = 5;
+        track.options.perPage = 1;
 
         if (event.layout === "small-tablet") {
-          track.options.perPage = 5;
+          track.options.perPage = 1;
           if (track.container.hasClass("huge")) {
             track.options.autoHeight = false;
           }
 
         } else if (event.layout === "phone") {
-          track.options.perPage = 5;
+          track.options.perPage = 1;
           track.options.mode = "vertical";
           track.options.autoHeight = false;
         }

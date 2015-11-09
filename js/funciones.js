@@ -102,7 +102,7 @@ function cargar_actividades(cantidad, tiempo){
 	}
 
 	for (var i = 0; i < cantidad; i++) {		
-		$('#content_activities').append('<div class="act_detail"><label>Nombre Actividad '+(i+1)+': <input type="text" id="actividad_'+i+'" /><label>Tiempo actividad '+(i+1)+': <input type="number" id="tiempo_'+i+'" min="0" max="999" onkeyUp="return ValNumero(this, 3);" required="required"/>&nbsp;' + tiempo + '</label><label>Precede '+(i+1)+': <input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+i+'" onkeyUp="return ValNumero(this, 100);" /></label></div>');
+		$('#content_activities').append('<div class="act_detail"><table><tr><td><label>Nombre Actividad '+(i+1)+': </td><td>&nbsp <input type="text" id="actividad_'+i+'" /></td></tr><tr><td><label>Tiempo actividad '+(i+1)+': </td><td>&nbsp; <input type="number" id="tiempo_'+i+'" min="0" max="999" onkeyUp="return ValNumero(this, 3);" required="required"/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>Precede '+(i+1)+': </td><td>&nbsp; <input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+i+'" onkeyUp="return ValNumero(this, 100);" /></label></td></tr></table></div>');
 		if((i+1) != cantidad)
 		{
 			$('#content_activities').append('<div id="separador"></div>');
@@ -122,7 +122,7 @@ function cargar_actividades_avanzado(cantidad, tiempo){
 	}
 
 	for (var i = 0; i < cantidad; i++) {		
-		$('#content_activities').append('<div class="act_detail"><span>Actividad '+(i+1)+'</span><label>Nombre Actividad '+(i+1)+': <input type="text" id="actividad_'+i+'" /><label>T. Optimista '+(i+1)+': <input type="number" id="tiempo_o_'+i+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);" />&nbsp;' + tiempo + '</label><label>T. Pesimista '+(i+1)+': <input type="number" id="tiempo_e_'+i+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label><label>T. Probable '+(i+1)+': <input type="number" id="tiempo_pr_'+i+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);" />&nbsp;' + tiempo + '</label><label>Costo Act. '+(i+1)+': <input type="number" id="costo_'+i+'" min="0" max="1000" /></label><label>Precede '+(i+1)+': <input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+i+'" onkeyUp="return ValNumero(this, 100);" /></label></div>');
+		$('#content_activities').append('<div class="act_detail"><span>Actividad '+(i+1)+'</span><table><tr><td><label>Nombre Actividad '+(i+1)+': </td><td>&nbsp;<input type="text" id="actividad_'+i+'" /></td></tr><tr><td><label>T. Optimista '+(i+1)+': </td><td>&nbsp;<input type="number" id="tiempo_o_'+i+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);" />&nbsp;' + tiempo + '</td></tr><tr><td></label><label>T. Pesimista '+(i+1)+': </td><td>&nbsp;<input type="number" id="tiempo_e_'+i+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</td></tr><tr><td></label><label>T. Probable '+(i+1)+': </td><td>&nbsp;<input type="number" id="tiempo_pr_'+i+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);" />&nbsp;' + tiempo + '</label></td></tr><tr><td><label>Costo Act. '+(i+1)+': </td><td>&nbsp;<input type="number" id="costo_'+i+'" min="0" max="1000" /></label></td></tr><tr><td><label>Precede '+(i+1)+': </td><td>&nbsp<input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+i+'" onkeyUp="return ValNumero(this, 100);" /></label></td></tr></table></div>');
 		if((i+1) != cantidad)
 		{
 			$('#content_activities').append('<div id="separador"></div>');
@@ -140,7 +140,7 @@ function agregar_actividades(value, tiempo){
 	
 	$('#content_activities').append('<div id="separador"></div>');
 
-	$('#content_activities').append('<div class="act_detail"><label>Nombre Actividad '+(i+1)+': <input type="text" id="actividad_'+cantidad_actividad+'" /><label>Tiempo actividad '+(cantidad_actividad+1)+': <input type="number" id="tiempo_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label><label>Precede '+(cantidad_actividad+1)+': <input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+cantidad_actividad+'" onkeyUp="return ValNumero(this, 100);" /></label></div>');
+	$('#content_activities').append('<div class="act_detail"><table><tr><td><label>Nombre Actividad '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="text" id="actividad_'+cantidad_actividad+'" /></td></tr><tr><td><label>Tiempo actividad '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="number" id="tiempo_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>Precede '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+cantidad_actividad+'" onkeyUp="return ValNumero(this, 100);" /></label></td></tr></table></div>');
 
 	$('#content_activities').append('<input type="button" class="boton_agrega" id="act_detail'+(cantidad_actividad+1)+'" value="+" onClick="agregar_actividades(this,\'' + tiempo + '\');">');
 	$('#content_activities').append('<div class="contact-but"><input type="button" id="cargart" value="Cargar Tiempo" onClick="javascript:carga_info();" /></div> <div class="contact-but"><input type="button" id="volvert" onClick="javascript:$(\'#info_proyecto\').show(); $(\'#content_activities\').hide(); $(\'#actividades\').hide();" value="Regresar" /></div>');
@@ -153,7 +153,7 @@ function agregar_actividades_avanzado(value, tiempo){
 	
 	$('#content_activities').append('<div id="separador"></div>');
 
-	$('#content_activities').append('<div class="act_detail"><span>Actividad '+(cantidad_actividad+1)+'</span><label>Nombre Actividad '+(cantidad_actividad+1)+': <input type="text" id="actividad_'+cantidad_actividad+'" /><label>T. Optimista '+(cantidad_actividad+1)+': <input type="number" id="tiempo_o_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label><label>T. Pesimista '+(cantidad_actividad+1)+': <input type="number" id="tiempo_e_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label><label>T. Probable '+(cantidad_actividad+1)+': <input type="number" id="tiempo_pr_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label><label>Costo Act. '+(cantidad_actividad+1)+': <input type="number" id="costo_'+cantidad_actividad+'" min="0" max="1000"/></label><label>Precede '+(cantidad_actividad+1)+': <input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+cantidad_actividad+'" onkeyUp="return ValNumero(this, 100);" /></label></div>');
+	$('#content_activities').append('<div class="act_detail"><span>Actividad '+(cantidad_actividad+1)+'</span><table><tr><td><label>Nombre Actividad '+(cantidad_actividad+1)+': </td><td>&nbsp;<input type="text" id="actividad_'+cantidad_actividad+'" /></td></tr><tr><td><label>T. Optimista '+(cantidad_actividad+1)+': </td><td>&nbsp;<input type="number" id="tiempo_o_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>T. Pesimista '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="number" id="tiempo_e_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>T. Probable '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="number" id="tiempo_pr_'+cantidad_actividad+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>Costo Act. '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="number" id="costo_'+cantidad_actividad+'" min="0" max="1000"/></label></td></tr><tr><td><label>Precede '+(cantidad_actividad+1)+': </td><td>&nbsp<input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+cantidad_actividad+'" onkeyUp="return ValNumero(this, 100);" /></label></td></tr></table></div>');
 
 	$('#content_activities').append('<input type="button" class="boton_agrega" id="act_detail'+(cantidad_actividad+1)+'" value="+" onClick="agregar_actividades_avanzado(this,\'' + tiempo + '\');">');
 	$('#content_activities').append('<div class="contact-but"><input type="button" id="cargart" value="Cargar Tiempo" onClick="javascript:carga_info_avanzado();" /></div> <div class="contact-but"><input type="button" id="volvert" onClick="javascript:$(\'#info_proyecto\').show(); $(\'#content_activities\').hide();$(\'#actividades\').hide()" value="Regresar" /></div>');
@@ -235,10 +235,12 @@ function alista_info_avanzado()
 {
 	var antec 				= document.getElementsByName("antec");
 	var fecha_inicial		= document.getElementsByName("f_inicio");
+	var presupuesto			= document.getElementsByName("presupuesto");
 	var tiempos_o 			= $("[id^='tiempo_o']");
 	var tiempos_p 			= $("[id^='tiempo_e']");
 	var tiempos_pr 			= $("[id^='tiempo_pr']");
 	var nombre_act 			= $("[id^='actividad_']");
+	var costo 				= $("[id^='costo']");
 	var valida 				= false;
 	var array_act 			= [];
 	var array_t_optimista 	= [];
@@ -248,6 +250,7 @@ function alista_info_avanzado()
 	var array_d_estandar 	= [];
 	var array_varianza  	= [];
 	var array_nombre 		= [];
+	var array_costo 		= [];
 	var result 				= Array(10);
 	
 	console.log(tiempos_o);
@@ -283,6 +286,7 @@ function alista_info_avanzado()
 	array_t_esperado[0]		={}
 	array_d_estandar[0]		={}
 	array_varianza[0]		={}
+	array_costo[0]			={}
 	for (var i = 0; i < tiempos_o.length; i++) {
 		if( tiempos_o[i].value==null || tiempos_o[i].value<= 0  || tiempos_p[i].value==null || tiempos_p[i].value<= 0 || tiempos_pr[i].value==null || tiempos_pr[i].value<= 0 )
 		{
@@ -297,11 +301,13 @@ function alista_info_avanzado()
 		array_t_esperado[i]  	= {tiempo: tiempo_esperado( tiempos_o[i].value, tiempos_p[i].value, tiempos_pr[i].value) };
 		array_varianza[i]  		= {tiempo: varianza( tiempos_o[i].value, tiempos_p[i].value) };		
 		array_d_estandar[i]  	= {tiempo: Math.sqrt(parseFloat(array_varianza[i]['tiempo'])) };		
+		array_d_estandar[i]  	= {tiempo: Math.sqrt(parseFloat(array_varianza[i]['tiempo'])) };
+		array_costo[i]			= {valor: costo[i].value};		
 	}
 
 	if(!valida)
 	{
-		$('#dialog-message').html('<br><p>Algunas actividades dependen de la ejecución de otras, hay que evaluar cuales son las actividades predecesoras de cada una de ella</p>');
+		$('#dialog-message').html('<br><p>Algunas actividades dependen de la ejecución de otras, hay que evaluar cuales son las actividades predecesoras de cada una de ellas</p>');
 		$('#dialog-message').dialog("open");
 	}
 
@@ -325,6 +331,7 @@ function alista_info_avanzado()
 	}*/
 	/*console.log(array_act);
 	console.log(array_tiempo);*/
+
 	result[0]=array_act;
 	result[1]=valida;
 	// result[2]=tiempos;
@@ -338,6 +345,8 @@ function alista_info_avanzado()
 	result[9]=array_varianza;
 	result[10]=array_nombre;
 	result[11]=fecha_inicial[0].value
+	result[12]=presupuesto[0].value;
+	result[13]=array_costo;
 	console.log(result); //  return false;
 	return result ;
 }
@@ -535,6 +544,8 @@ function graficar()
 	localStorage["validacion"] = JSON.stringify(valida);
 	localStorage["nombre"] = JSON.stringify(array_nombre);
 	localStorage["fecha"] = JSON.stringify(result[6]);
+	localStorage["cantidad"] = i;
+	localStorage["varianza"] = null;
 	/*sessionStorage.setItem("actividad", array_act);
 	sessionStorage.setItem("tiempo", array_tiempo);
 	sessionStorage.setItem("valida", valida);*/
@@ -591,30 +602,53 @@ function graficar_avanzado()
 {
 	result = alista_info_avanzado();
 	valida = result[2];
+	presupuesto = result[12];
 	/*array_act = result[0];
 	array_tiempo = result[1];*/
 	tiempos = result[7];
 	array_tiempo = result[7];
-
 	array_act = Array(tiempos.length);
 	array_tiempo = Array(tiempos.length);
 	array_nombre = Array(tiempos.length);
+	array_varianza = Array(tiempos.length);
+	array_desviacion = Array(tiempos.length);
+	array_t_prob = Array(tiempos.length);
+	array_t_pes = Array(tiempos.length);
+	array_t_opt = Array(tiempos.length);
+	array_t_opt = Array(tiempos.length);
+	array_costo = Array(tiempos.length);
 
 	for (var i = 0; i < tiempos.length; i++) 
 	{
-		array_act[i] = result[0][i];
-		array_tiempo[i] = result[7][i];
-		array_nombre[i] = result[10][i];
+		array_act[i] 		= result[0][i];
+		array_tiempo[i] 	= result[7][i];
+		array_nombre[i] 	= result[10][i];
+		array_t_opt[i] 		= result[3][i];
+		array_t_prob[i] 	= result[5][i];
+		array_t_pes[i] 		= result[4][i];
+		array_desviacion[i]	= result[8][i];
+		array_varianza[i]	= result[9][i];
+		array_costo[i]		= result[13][i];
+
 	}
 	console.log(tiempos);
 	console.log(array_tiempo);
 
-	localStorage["actividad"] = JSON.stringify(array_act);
-	localStorage["tiempo"] = JSON.stringify(array_tiempo);
-	localStorage["validacion"] = JSON.stringify(valida);
-	localStorage["nombre"] = JSON.stringify(array_nombre);
-	localStorage["fecha"] = JSON.stringify(result[11]);
+	localStorage["actividad"] 	= JSON.stringify(array_act);
+	localStorage["tiempo"] 		= JSON.stringify(array_tiempo);
+	localStorage["validacion"] 	= JSON.stringify(valida);
+	localStorage["nombre"] 		= JSON.stringify(array_nombre);
+	localStorage["fecha"] 		= JSON.stringify(result[11]);
+	localStorage["cantidad"] 	= i;
+	localStorage["optimista"] 	= JSON.stringify(array_t_opt);
+	localStorage["pesimista"] 	= JSON.stringify(array_t_pes);
+	localStorage["probable"] 	= JSON.stringify(array_t_prob);
+	localStorage["varianza"] 	= JSON.stringify(array_varianza);
+	localStorage["desviacion"] 	= JSON.stringify(array_desviacion);
+	localStorage["costo"] 		= JSON.stringify(array_costo);
+	localStorage["presupuesto"] = JSON.stringify(presupuesto);
 
+	//console.log(result);return false;
 
 	window.location.href = "grafica.html";
 	//window.location.href = "grafica2.html";
@@ -653,26 +687,26 @@ function cargar_concepto(valor)
 	var code;
 	switch(valor) {
     case 'edt':
-        code = '<div id="content_dialog"><h2>&nbsp;&nbsp;La EDT</h2><div><div class="col-md-4 about-text-left"><p align="justify">Llamada también estructura desglosada de trabajo, es la estructura jerarquica y descendente de las partidas o paquetes de trabajo que se deberán realizar durante la implementación de un proyecto para lograr sus objetivos.</p><div><img src="images/EDT.jpg" alt="" style="height:100%; position:relative;width:100%"></div><p align="justify"><b>Pasos para su construcción:</b><br><br>- Primero defina el producto Final (Objetivo específico).<br>- Defina etapas o divisiones funcionales.<br>- Identificar los entregables específicos del producto.<br>- Identificar actividades claves y de apoyo.</p></div></div></div>';
+        code = '<div id="content_dialog"><h2>&nbsp;&nbsp;La EDT</h2><div><div class="col-md-4 about-text-left"><p align="justify">Llamada tambi&eacute;n estructura desglosada de trabajo, es la estructura jer&aacute;rquica y descendente de las partidas o paquetes de trabajo que se deber&aacute;n realizar durante la implementaci&oacute;n de un proyecto para lograr sus objetivos.</p><div><img alt="" src="images/EDT.jpg" style="height:100%; position:relative;width:100%" /></div><p align="justify"><b>Pasos para su construcci&oacute;n:</b><br /><br />- Primero defina el producto Final (Objetivo espec&iacute;fico).<br />- Defina etapas o divisiones funcionales.<br />- Identificar los entregables espec&iacute;ficos del producto.<br />- Identificar actividades claves y de apoyo.</p></div></div></div>';
         break;
     case 'actividad':
-        code = '<div id="content_dialog"><h2>&nbsp;&nbsp;Actividades</h2><div class="inner" id="step_one"><div class="col-md-4 about-text-left"><p align="justify">La definición de actividades consiste en identificar cuales son las acciones que se deben llevar a cabo para conseguir los entregables de un proyecto.<br><br>Una vez creada la EDT, se obtiene el nivel mas bajo de esta descomposición, denominado PAQUETES DE TRABAJO. La descomposición de éstos en componentes más pequeños nos proporciona las ACTIVIDADES necesarias para ejecutar los paquetes de trabajo.</p><p align="left"><b>Entradas:</b>- Plan de gestión del cronograma.<br>- Línea base del Alcance.<br>- Activos de los procesos de la Organización.<br>- Factores Ambientales.</p><p align="Right"><b>Herramientas y Técnicas:</b><br>- Descomposición EDT.<br>- Planificación gradual.<br>- Juicio de expertos.</p><p align="Left"><b>Salidas:</b>- Lista de Actividades.<br>- Atributos de la Actividad.<br>- Listado de hitos.</p></div></div>';
+        code = '<div id="content_dialog"><h2>&nbsp;&nbsp;Actividades</h2><div class="inner" id="step_one"><div class="col-md-4 about-text-left"><p align="justify">La definici&oacute;n de actividades consiste en identificar cu&aacute;les son las acciones que se deben llevar a cabo para conseguir los entregables de un proyecto.<br /><br />Una vez creada la EDT, se obtiene el nivel m&aacute;s bajo de esta descomposici&oacute;n, denominado PAQUETES DE TRABAJO. La descomposici&oacute;n de &eacute;stos en componentes m&aacute;s peque&ntilde;os nos proporciona las ACTIVIDADES necesarias para ejecutar los paquetes de trabajo.</p><p align="left"><b>Entradas:</b>- Plan de gesti&oacute;n del cronograma.<br />- L&iacute;nea base del Alcance.<br />- Activos de los procesos de la Organizaci&oacute;n.<br />- Factores Ambientales.</p><p align="Right"><b>Herramientas y T&eacute;cnicas:</b><br />- Descomposici&oacute;n EDT.<br />- Planificaci&oacute;n gradual.<br />- Juicio de expertos.</p><p align="Left"><b>Salidas:</b>- Lista de Actividades.<br />- Atributos de la Actividad.<br />- Listado de hitos.</p></div></div></div>';
         break;
 
     case 'cronograma':
-        code = '<div id="content_dialog"><h2>&nbsp;&nbsp;Cronograma</h2><div class="inner" id="step_one"><div class="col-md-4 about-text-left"><p align="justify">Es la descripción específica de las actividades y del tiempo que se va a emplear para la ejecución del proyecto. Se debe organizar el trabajo en fechas probables, para saber cuanto tiempo requerirá elaborar el trabajo definitivo.</p><div><img src="img/cronograma.png" alt="" style="height:100%; position:relative;width:100%"></div><p align="justify">Actividad Predecesora:<br>- Es una actividad que se debe comenzar o terminar antes de que otra pueda comenzar.<br><br>Actividad Sucesora:<br>- Es una actividad que depende del comienzo o del fin de una tarea precedente.<br><br>Actividad de resumen:<br>- Son aquellas que se componen de subtareas y resume esas subtareas.</p><p align="justify"><b>Paso para elaborar la planeación de actividades:</b><br><br>- Listar las actividades en columna.<br>- Identificar el tiempo disponible para el proyecto indicado.<br>- Calcular el tiempo para cada actividad.<br>- Reordenar cronologicamente.<br>- Ajustar tiempo o secuencia de actividades.</p></div></div>';
+        code = '<div id="content_dialog"><h2>&nbsp;&nbsp;Cronograma</h2><div class="inner" id="step_one"><div class="col-md-4 about-text-left"><p align="justify">Es la descripci&oacute;n espec&iacute;fica de las actividades y del tiempo que se va a emplear para la ejecuci&oacute;n del proyecto. Se debe organizar el trabajo en fechas probables, para saber cu&aacute;nto tiempo requerir&aacute; elaborar el trabajo definitivo.</p><div><img alt="" src="img/cronograma.png" style="height:100%; position:relative;width:100%" /></div><p align="justify">Actividad Predecesora:<br />- Es una actividad que se debe comenzar o terminar antes de que otra pueda comenzar.<br /><br />Actividad Sucesora:<br />- Es una actividad que depende del comienzo o del fin de una tarea precedente.<br /><br />Actividad de resumen:<br />- Son aquellas que se componen de subtareas y resume esas subtareas.</p><p align="justify"><b>Paso para elaborar la planeaci&oacute;n de actividades:</b><br /><br />- Listar las actividades en columna.<br />- Identificar el tiempo disponible para el proyecto indicado.<br />- Calcular el tiempo para cada actividad.<br />- Reordenar cronol&oacute;gicamente.<br />- Ajustar tiempo o secuencia de actividades.</p></div></div></div>';
         break;
 
     case 'pert':
-        code = '<div id="content_dialog"><h2>&nbsp;&nbsp;PERT</h2><div class="inner" id="step_one"><div class="col-md-4 about-text-left"><p align="justify">Técnica que permite dirigir la programación del proyecto. El método PERT consiste en la representación gráfica de una red de tareas, que, cuando se colocan en cadena, permiten alcanzar los objetivos de un proyecto.</p><p align="justify"><b>El método PERT debe incluir:</b><br><br>- Desglose preciso del proyecto en tareas.<br>- Cálculo de la duración de cada tarea.<br>- La designación de un director del proyecto que se haga cargo de asegurar la supervisión de dicho proyecto, de informar, en caso de ser necesario, y de tomar decisiones en caso de que existan variaciones de las proyecciones.<br><br><b>Red PERT</b><br></p><div ><img src="img/redpert.png" alt="" style="height:100%; position:relative;width:100%"></div><p align="justify">Tareas: Representadas por una flecha. Se le asigna a cada una de las tareas un código y una duración. Sin embargo, la longitud de la flecha es independiente de la duración de la tarea.<br><br>Etapas: es decir, el inicio y el final de la tarea. Cada tarea tiene una etapa de inicio y una de finalización. Con excepción de las etapas iniciales y finales, cada etapa final es una etapa de inicio de la siguiente tarea. Las etapas generalmente están numeradas y representadas por un círculo, pero en algunos otros casos pueden estar representadas por otras formas (cuadrados, rectángulos, óvalos, etc.).<br></br>Tareas ficticias: representadas por una flecha punteada que indica las limitaciones de las cadenas de tareas entre ciertas etapas.</p></div></div>';
+        code = '<div id="content_dialog"><h2>&nbsp;&nbsp;PERT</h2><div class="inner" id="step_one"><div class="col-md-4 about-text-left"><p align="justify">T&eacute;cnica que permite dirigir la programaci&oacute;n del proyecto. El m&eacute;todo PERT consiste en la representaci&oacute;n gr&aacute;fica de una red de tareas, que, cuando se colocan en cadena, permiten alcanzar los objetivos de un proyecto.</p><p align="justify"><b>El m&eacute;todo PERT debe incluir:</b><br /><br />- Desglose preciso del proyecto en tareas.<br />- C&aacute;lculo de la duraci&oacute;n de cada tarea.<br />- La designaci&oacute;n de un director del proyecto que se haga cargo de asegurar la supervisi&oacute;n de dicho proyecto, de informar, en caso de ser necesario, y de tomar decisiones en caso de que existan variaciones de las proyecciones.<br /><br /><b>Red PERT</b></p><div><img alt="" src="img/redpert.png" style="height:100%; position:relative;width:100%" /></div><p align="justify">Tareas: Representadas por una flecha. Se le asigna a cada una de las tareas un c&oacute;digo y una duraci&oacute;n. Sin embargo, la longitud de la flecha es independiente de la duraci&oacute;n de la tarea.<br /><br />Etapas: es decir, el inicio y el final de la tarea. Cada tarea tiene una etapa de inicio y una de finalizaci&oacute;n. Con excepci&oacute;n de las etapas iniciales y finales, cada etapa final es una etapa de inicio de la siguiente tarea. Las etapas generalmente est&aacute;n numeradas y representadas por un c&iacute;rculo, pero en algunos otros casos pueden estar representadas por otras formas (cuadrados, rect&aacute;ngulos, &oacute;valos, etc.).<br /><br />Tareas ficticias: representadas por una flecha punteada que indica las limitaciones de las cadenas de tareas entre ciertas etapas.</p></div></div></div>';
         break;
 
     case 'holgura':
-        code = '<div id="content_dialog"><h2>&nbsp;&nbsp;Holgura</h2><div class="inner" id="step_one"><div class="col-md-4 about-text-left"><p align="justify">Las cadenas no crititcas disponen de un sobrante de tiempo para su ejecución, dando lugar al estudio de las HOLGURAS. La holgura de un suceso es el margen de tiempo que se tiene para alcanzar dicho suceso. Cuando este margen es nulo, se dice que el suceso es critico</p><div ><img src="img/holgura.png" alt="" style="height:100%; position:relative;width:100%"></div></div></div>';
+        code = '<div id="content_dialog"><h2>&nbsp;&nbsp;Holgura</h2><div class="inner" id="step_one"><div class="col-md-4 about-text-left"><p align="justify">Las cadenas no cr&iacute;ticas disponen de un sobrante de tiempo para su ejecuci&oacute;n, dando lugar al estudio de las HOLGURAS. La holgura de un suceso es el margen de tiempo que se tiene para alcanzar dicho suceso. Cuando este margen es nulo, se dice que el suceso es cr&iacute;tico</p><div><img alt="" src="img/holgura.png" style="height:100%; position:relative;width:100%" /></div></div></div></div>';
         break;
 
     case 'r_critica':
-        code = '<div id="content_dialog"><h2>&nbsp;&nbsp;Ruta Critica</h2><div class="inner" id="step_one"><div class="col-md-4 about-text-left"><p align="justify">En administración y gestión de proyectos, una ruta crítica es la secuencia de los elementos terminales de la red de proyectos con la mayor duración entre ellos, determinando el tiempo más corto en el que es posible completar el proyecto. La duración de la ruta crítica determina la duración del proyecto entero. Cualquier retraso en un elemento de la ruta crítica afecta a la fecha de término planeada del proyecto, y se dice que no hay holgura en la ruta crítica.</p><div ><img src="img/logocpm.png" alt="" style="height:25; position:relative;width:27" align="right"></div><br><div ><img src="img/rutacpm.png" alt="" style="height:100%; position:relative;width:100%"></div></div></div>';
+        code = '<div id="content_dialog"><h2>&nbsp;&nbsp;Ruta Critica</h2><div class="inner" id="step_one"><div class="col-md-4 about-text-left"><p align="justify">En administraci&oacute;n y gesti&oacute;n de proyectos, una ruta cr&iacute;tica es la secuencia de los elementos terminales de la red de proyectos con la mayor duraci&oacute;n entre ellos, determinando el tiempo m&aacute;s corto en el que es posible completar el proyecto. La duraci&oacute;n de la ruta cr&iacute;tica determina la duraci&oacute;n del proyecto entero. Cualquier retraso en un elemento de la ruta cr&iacute;tica afecta a la fecha de t&eacute;rmino planeada del proyecto, y se dice que no hay holgura en la ruta cr&iacute;tica.</p><div><img align="right" alt="" src="img/logocpm.png" style="height:25; position:relative;width:27" /></div>&nbsp;<div><img alt="" src="img/rutacpm.png" style="height:100%; position:relative;width:100%" /></div></div></div></div>';
         break;
 }
 	$('#dialog_message_concept').html(null);
@@ -700,6 +734,10 @@ $(document).ready(function(){
 		cantidad = 2;
 		if(cantidad>0 && todoCorrecto)
 		{
+			localStorage["n_proyecto"] = $('#n_proyecto').val();
+			localStorage["n_gerente"] = $('#n_gerente').val();
+			localStorage["m_tiempo"] = $('#m_tiempo').val();
+			localStorage["objetivo"] = $('#obj').val();
 			$('#error').html(null);
 			$('#actividades').html(null);
 			$('#actividades').show();
@@ -734,6 +772,11 @@ $(document).ready(function(){
 		cantidad = 2;
 		if(cantidad>0 && todoCorrecto)
 		{
+			localStorage["n_proyecto"] = $('#n_proyecto').val();
+			localStorage["n_gerente"] = $('#n_gerente').val();
+			localStorage["m_tiempo"] = $('#m_tiempo').val();
+			localStorage["objetivo"] = $('#obj').val();
+
 			$('#error').html(null);
 			$('#actividades').html(null);
 			$('#actividades').show();
@@ -756,7 +799,18 @@ $(document).ready(function(){
 	});
 
 
+	/*Funciones para guardado y recuperacion de la informacion*/
+
+	function save_proyect()
+	{
+
+	}
+
 	/*Menu*/
+
+	function ingresar(){
+		window.location="menu.html";
+	}
 
 	$('#menu_pert').click(function(){
 		window.location="menu_pert.html";

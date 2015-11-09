@@ -681,6 +681,13 @@ input.boton_remover {
   padding: 0 15px;
 }
 
+div#btn_omitir {
+    position: absolute;
+    bottom: 30px;
+    left: 70%;
+    font-size: 1.2em;
+}
+
 
 
 /*jquery-ui*/
