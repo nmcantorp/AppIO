@@ -80,8 +80,8 @@ var costo;
         valores = {actividad: actividades, tiempo: tiempo, nombre: nombres, fecha: fecha, gerente:nom_gerente, proyecto:nom_proyecto, medida:m_tiempo, objetivo: objetivo, cantidad: cantidad};
          console.log(nom_proyecto);
         $.ajax({
-          url: 'php/servicio.php',
-          //url: 'http://www.sialen.com/webservice/servicio.php',
+          //url: 'php/servicio.php',
+          url: 'http://www.sialen.com/webservice/servicio.php',
           type: 'POST',
           dataType: 'jsonp',
           data: {ac: 'save', data: valores },
@@ -92,6 +92,7 @@ var costo;
             $('#dialog-message').hide();
             $('#guardado').val(1);
             $('#save_proyect').hide();
+            alert("Su proyecto se ha guardado con exitosamente");
 
           }else{
             $('#dialog-message').show();
@@ -104,6 +105,7 @@ var costo;
             $('#dialog-message').hide();
             $('#guardado').val(1);
             $('#save_proyect').hide();
+            alert("Su proyecto se ha guardado con exitosamente");
 
           }else{
             $('#dialog-message').show();
@@ -114,8 +116,8 @@ var costo;
         valores = {actividad: actividades, tiempo: tiempo, nombre: nombres, fecha: fecha, gerente:nom_gerente, proyecto:nom_proyecto, medida:m_tiempo, objetivo: objetivo, cantidad: cantidad, varianza:varianza, probable:probable, pesimista:pesimista, optimista:optimista, desviacion:desviacion, presupuesto:presupuesto, costo:costo};
          console.log(nom_proyecto);
         $.ajax({
-          url: 'php/servicio.php',
-          //url: 'http://www.sialen.com/webservice/servicio.php',
+          //url: 'php/servicio.php',
+          url: 'http://www.sialen.com/webservice/servicio.php',
           type: 'POST',
           dataType: 'jsonp',
           data: {ac: 'save_a', data: valores },
@@ -126,6 +128,7 @@ var costo;
             $('#dialog-message').hide();
             $('#guardado').val(1);
             $('#save_proyect').hide();
+            alert("Su proyecto se ha guardado con exitosamente");
 
           }else{
             $('#dialog-message').show();
@@ -139,6 +142,7 @@ var costo;
             $('#dialog-message').hide();
             $('#guardado').val(1);
             $('#save_proyect').hide();
+            alert("Su proyecto se ha guardado con exitosamente");
 
           }else{
             $('#dialog-message').show();
@@ -154,7 +158,7 @@ var costo;
       
       if($('#guardado').val() == 0)
       {
-        var r = confirm("Si selecciona Salir, puede perder todos los cambios realizado. Desea Continuar?");
+        var r = confirm("Si selecciona Salir, puede perder todos los cambios realizados. Desea Continuar?");
         if (r == true) {
             window.location="menu.html";
         } else {
@@ -309,7 +313,7 @@ var costo;
   <div id="grafica"><div id="chart_div"></div></div>
 
   <div id="info_graf" class="botones" style="margin-right: 10%;">
-    <div id="save_proyect" onclick="javascript:salir();">Salir</div>
+    <div id="exit_proyect" onclick="javascript:salir();">Salir</div>
     <div id="save_proyect" onclick="javascript:save();">Guardar</div>
   </div>
   <input type="hidden" name="guardado" id="guardado" value="0">
