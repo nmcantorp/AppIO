@@ -46,6 +46,7 @@ var optimista;
 var desviacion;
 var presupuesto;
 var costo;
+var id_device;
     /**
      * Funcion que captura las variables pasados por GET
      * http://www.lawebdelprogramador.com/pagina.html?id=10&pos=3
@@ -74,10 +75,10 @@ var costo;
     }
 
     function save()
-    {
+    { //id_device='b6bki92049jdksdk';
       if(varianza == null)
-      {
-        valores = {actividad: actividades, tiempo: tiempo, nombre: nombres, fecha: fecha, gerente:nom_gerente, proyecto:nom_proyecto, medida:m_tiempo, objetivo: objetivo, cantidad: cantidad};
+      { 
+          valores = { actividad: actividades, tiempo: tiempo, nombre: nombres, fecha: fecha, gerente: nom_gerente, proyecto: nom_proyecto, medida: m_tiempo, objetivo: objetivo, cantidad: cantidad, device: id_device };
          console.log(nom_proyecto);
         $.ajax({
           //url: 'php/servicio.php',
@@ -87,12 +88,13 @@ var costo;
           data: {ac: 'save', data: valores },
         })
         .done(function(result) {
+          console.log((result));
           if(result.status == 200)
           {
             $('#dialog-message').hide();
             $('#guardado').val(1);
             $('#save_proyect').hide();
-            alert("Su proyecto se ha guardado con exitosamente");
+            alert("Su proyecto se ha guardado exitosamente");
 
           }else{
             $('#dialog-message').show();
@@ -100,21 +102,21 @@ var costo;
           console.log(result.responseText.status);
         })
         .fail(function(result) {
+          console.log((result));
           if(result.status == 200)
           {
             $('#dialog-message').hide();
             $('#guardado').val(1);
             $('#save_proyect').hide();
-            alert("Su proyecto se ha guardado con exitosamente");
+            alert("Su proyecto se ha guardado exitosamente");
 
           }else{
             $('#dialog-message').show();
           }
-          console.log((result));
         });
       }else{
-        valores = {actividad: actividades, tiempo: tiempo, nombre: nombres, fecha: fecha, gerente:nom_gerente, proyecto:nom_proyecto, medida:m_tiempo, objetivo: objetivo, cantidad: cantidad, varianza:varianza, probable:probable, pesimista:pesimista, optimista:optimista, desviacion:desviacion, presupuesto:presupuesto, costo:costo};
-         console.log(nom_proyecto);
+          valores = { actividad: actividades, tiempo: tiempo, nombre: nombres, fecha: fecha, gerente: nom_gerente, proyecto: nom_proyecto, medida: m_tiempo, objetivo: objetivo, cantidad: cantidad, varianza: varianza, probable: probable, pesimista: pesimista, optimista: optimista, desviacion: desviacion, presupuesto: presupuesto, costo: costo, device: id_device };
+         //console.log(device);
         $.ajax({
           //url: 'php/servicio.php',
           url: 'http://www.sialen.com/webservice/servicio.php',
@@ -122,13 +124,14 @@ var costo;
           dataType: 'jsonp',
           data: {ac: 'save_a', data: valores },
         })
-        .done(function(result) {
+        .done(function(result) { 
+          console.log((result));
           if(result.status == 200)
           {
             $('#dialog-message').hide();
             $('#guardado').val(1);
             $('#save_proyect').hide();
-            alert("Su proyecto se ha guardado con exitosamente");
+            alert("Su proyecto se ha guardado exitosamente");
 
           }else{
             $('#dialog-message').show();
@@ -136,13 +139,14 @@ var costo;
           console.log(result.responseText.status);
 
         })
-        .fail(function(result) {
+        .fail(function(result) { 
+          console.log((result));
           if(result.status == 200)
           {
             $('#dialog-message').hide();
             $('#guardado').val(1);
             $('#save_proyect').hide();
-            alert("Su proyecto se ha guardado con exitosamente");
+            alert("Su proyecto se ha guardado exitosamente");
 
           }else{
             $('#dialog-message').show();
@@ -192,6 +196,11 @@ var costo;
         desviacion    = JSON.parse(localStorage["desviacion"]);
         presupuesto   = JSON.parse(localStorage["presupuesto"]);
         costo         = JSON.parse(localStorage["costo"]);
+        id_device     = localStorage["id_device"];
+        if(localStorage['id_proyecto'] != 'null'){
+          $('#save_proyect').hide();
+          $('#guardado').val(1);
+        }
     }
     </script>
  
@@ -324,9 +333,9 @@ var costo;
           <div class="footer-main">
               <div class="col-md-6 footer-left">
                   <ul>
-                      <li><a href="#"><!--Nosotros <span></span> --></a></li>
-                      <li><a href="#"><!-- <span> </span> --></a></li>
-                      <li><a href="#"><!-- <span> </span> --></a></li>
+                      <li><a href="https://www.facebook.com/profile.php?id=100010653846772" target="_blank"><span class="fb"></span></a></li>
+                      <li><a href="https://twitter.com/App3rt_Colombia"><span class="twit" target="_blank"></span></a></li>
+                      <li><a href="#"><!-- <span class="in"> </span> --></a></li>
                   </ul>
               </div>
               <div class="col-md-6 footer-right" style="position: relative; bottom: 40px;">

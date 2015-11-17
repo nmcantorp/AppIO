@@ -24,9 +24,17 @@
 
 }
 
+@font-face {
+    font-family: 'candara';
+    src: url('font/candara/Candara.ttf') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body {
-  font-family: 'boogalooregular';
-  font-size: 19px;
+  font-family: 'candara';
+  font-size: 18px;
   margin: 0;
   padding: 0;
 }
@@ -109,9 +117,9 @@ h2 {
 
 .track .inner h2 {
   font-weight: 200;
-  font-family: Helvetica,Arial,Verdana,sans-serif;
+  /*font-family: Helvetica,Arial,Verdana,sans-serif;*/
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   color: #999;
 }
 
@@ -370,7 +378,7 @@ h2 {
 /*--start-footer--*/
 .footer{
   background:#16A401;
-  padding: 0 0 60px 0;
+  padding: 0px 0px 60px 15px;
   position: fixed !important;
   width: 100% !important;
   bottom: 0 !important;
@@ -453,7 +461,7 @@ h2 {
   box-shadow: 0px 0px 12px 2px rgba(119, 119, 119, 0.75);
   -moz-box-shadow: 0px 0px 12px 2px rgba(119, 119, 119, 0.75);
   -webkit-box-shadow: 0px 0px 12px 2px rgba(119, 119, 119, 0.75);
-  bottom: -70%;
+  bottom: -65%;
 
 }
 
@@ -538,8 +546,20 @@ div#menu_abrir_int {
     font-size: 3.2em;
 }
 
+#redes{
+  position: absolute;
+  right: 20px;
+  top: 35%;
+}
+
+#redes a{
+  color: white;
+  font-size: 1.6em;
+  font-weight: normal;
+}
+
 .view-port, .track .inner, .slider-container .item.cover {
-    height: 370px !important;
+    height: 400px !important;
     padding-left: 10px;
 }
 
@@ -696,9 +716,19 @@ input.boton_remover {
 
 div#btn_omitir {
     position: absolute;
-    bottom: 30px;
-    left: 70%;
+    top: 1%;
+    right: 4%;
     font-size: 1.2em;
+}
+
+div#btn_omitir a{
+    color:white;
+    font-size: 1.5em;
+}
+
+.footer-right
+{
+  display:none;
 }
 
 

@@ -5,8 +5,7 @@ $(document).on('ready',document, function(){
 	var array_act = [];
 	var array_tiempo = [];
 	var cantidad_actividad = 0;
-
-
+	var id_device = '';
 	$( "#dialog-message" ).dialog({
       	modal: true,
     	buttons: {
@@ -28,6 +27,7 @@ $(document).on('ready',document, function(){
     });
 
     $( "#dialog_message_concept" ).dialog("close");
+
 });
 
 /*Reorganizar consecutivo*/
@@ -102,14 +102,31 @@ function ValNumero(Control, cantidad){
 //*** Fin del Codigo para Validar que sea un campo Numerico
 
 function cargar_actividades(cantidad, tiempo){
-
-	if(cantidad > 5)
+	if(localStorage['id_proyecto'] != 'null')
 	{
-		$('.footer').attr('position', 'relative');
+		cargar_detalle_actividades(1, localStorage['id_proyecto']);
+		act_proy_sesion = JSON.parse(localStorage['abrir']);
+		act_proy = act_proy_sesion;
+		actividad_cargar = act_proy.data;
+		console.log(actividad_cargar);
+		cantidad = act_proy.data.total;
+
+		ronda = 0;		
+
 	}
 
-	for (var i = 0; i < cantidad; i++) {		
-		$('#content_activities').append('<div class="act_detail"><table><tr><td><label>Nombre Actividad '+(i+1)+': </td><td>&nbsp <input type="text" id="actividad_'+i+'" /></td></tr><tr><td><label>Tiempo actividad '+(i+1)+': </td><td>&nbsp; <input type="number" id="tiempo_'+i+'" min="0" max="999" onkeyUp="return ValNumero(this, 3);" required="required"/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>Precede '+(i+1)+': </td><td>&nbsp; <input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+i+'" onkeyUp="return ValNumero(this, 100);" /></label></td></tr></table></div>');
+	for (var i = 0; i < cantidad; i++) {	
+		nom_act=null;
+		pred = null;
+		t_esp = null;
+		if(localStorage['id_proyecto'] != 'null')
+		{
+			if(actividad_cargar[i]['Nombre_Actividad'] != null ) nom_act = " value='"+actividad_cargar[i]['Nombre_Actividad'] +"' readonly='readonly'";
+			if(actividad_cargar[i]['Tesperado_Actividad'] != null ) t_esp = " value='"+actividad_cargar[i]['Tesperado_Actividad'] +"' readonly='readonly'";
+			if(actividad_cargar[i]['Numero_Actividad'] != null ) pred = " value='"+actividad_cargar[i]['Numero_Actividad'] +"' readonly='readonly'";
+
+		}
+		$('#content_activities').append('<div class="act_detail"><table><tr><td><label>Nombre Actividad '+(i+1)+': </td><td>&nbsp <input type="text" id="actividad_'+i+'" '+nom_act+' /></td></tr><tr><td><label>Tiempo actividad '+(i+1)+': </td><td>&nbsp; <input type="number" id="tiempo_'+i+'" min="0" max="999" onkeyUp="return ValNumero(this, 3);" required="required" '+t_esp+'/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>Precede '+(i+1)+': </td><td>&nbsp; <input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+i+'" onkeyUp="return ValNumero(this, 100);" '+pred+'/></label></td></tr></table></div>');
 		if((i+1) != cantidad)
 		{
 			$('#content_activities').append('<div id="separador"></div>');
@@ -122,14 +139,41 @@ function cargar_actividades(cantidad, tiempo){
 }
 
 function cargar_actividades_avanzado(cantidad, tiempo){
-
-	if(cantidad > 5)
+	if(localStorage['id_proyecto'] != 'null')
 	{
-		$('.footer').attr('position', 'relative');
+		cargar_detalle_actividades(2, localStorage['id_proyecto']);
+		act_proy_sesion = JSON.parse(localStorage['abrir']);
+		act_proy = act_proy_sesion;
+		actividad_cargar = act_proy.data;
+		console.log(actividad_cargar);
+		cantidad = act_proy.data.total;
+
+		ronda = 0;		
+
 	}
 
+/*	if(cantidad > 5)
+	{
+		$('.footer').attr('position', 'relative');
+	}*/
+		nom_act=null;
+		pred = null;
+		t_opt = null;
+		t_pes = null;
+		t_pro = null;
+		cos_act = null;
 	for (var i = 0; i < cantidad; i++) {		
-		$('#content_activities').append('<div class="act_detail"><span>Actividad '+(i+1)+'</span><table><tr><td><label>Nombre Actividad '+(i+1)+': </td><td>&nbsp;<input type="text" id="actividad_'+i+'" /></td></tr><tr><td><label>T. Optimista '+(i+1)+': </td><td>&nbsp;<input type="number" id="tiempo_o_'+i+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);" />&nbsp;' + tiempo + '</td></tr><tr><td></label><label>T. Pesimista '+(i+1)+': </td><td>&nbsp;<input type="number" id="tiempo_e_'+i+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);"/>&nbsp;' + tiempo + '</td></tr><tr><td></label><label>T. Probable '+(i+1)+': </td><td>&nbsp;<input type="number" id="tiempo_pr_'+i+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);" />&nbsp;' + tiempo + '</label></td></tr><tr><td><label>Costo Act. '+(i+1)+': </td><td>&nbsp;<input type="number" id="costo_'+i+'" min="0" max="1000" /></label></td></tr><tr><td><label>Precede '+(i+1)+': </td><td>&nbsp<input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+i+'" onkeyUp="return ValNumero(this, 100);" /></label></td></tr></table></div>');
+		if(localStorage['id_proyecto'] != 'null')
+		{
+			if(actividad_cargar[i]['Nombre_Actividad'] != null ) nom_act = " value='"+actividad_cargar[i]['Nombre_Actividad'] +"' readonly='readonly'";
+			if(actividad_cargar[i]['Toptimista_Actividad'] != null ) t_opt = " value='"+actividad_cargar[i]['Toptimista_Actividad'] +"' readonly='readonly'";
+			if(actividad_cargar[i]['Tpesimista_Actividad'] != null ) t_pes = " value='"+actividad_cargar[i]['Tpesimista_Actividad'] +"' readonly='readonly'";
+			if(actividad_cargar[i]['Tprobable_Actividad'] != null ) t_pro = " value='"+actividad_cargar[i]['Tprobable_Actividad'] +"' readonly='readonly'";
+			if(actividad_cargar[i]['Costo_Actividad'] != null ) cos_act = " value='"+actividad_cargar[i]['Costo_Actividad'] +"' readonly='readonly'";
+			if(actividad_cargar[i]['Numero_Actividad'] != null ) pred = " value='"+actividad_cargar[i]['Numero_Actividad'] +"' readonly='readonly'";
+			
+		}
+		$('#content_activities').append('<div class="act_detail"><span>Actividad '+(i+1)+'</span><table><tr><td><label>Nombre Actividad '+(i+1)+': </td><td>&nbsp;<input type="text" id="actividad_'+i+'" '+nom_act+'/></td></tr><tr><td><label>T. Optimista '+(i+1)+': </td><td>&nbsp;<input type="number" id="tiempo_o_'+i+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);" '+t_opt+'/>&nbsp;' + tiempo + '</td></tr><tr><td></label><label>T. Pesimista '+(i+1)+': </td><td>&nbsp;<input type="number" id="tiempo_e_'+i+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);" '+t_pes+'/>&nbsp;' + tiempo + '</td></tr><tr><td></label><label>T. Probable '+(i+1)+': </td><td>&nbsp;<input type="number" id="tiempo_pr_'+i+'" min="0" max="1000" onkeyUp="return ValNumero(this, 3);" '+t_pro+'/>&nbsp;' + tiempo + '</label></td></tr><tr><td><label>Costo Act. '+(i+1)+': </td><td>&nbsp;<input type="number" id="costo_'+i+'" min="0" max="1000" '+cos_act+'/></label></td></tr><tr><td><label>Precede '+(i+1)+': </td><td>&nbsp<input type="text" placeholder="Ejemplo 1,2,..,n" name="antec" id="antec_'+i+'" onkeyUp="return ValNumero(this, 100);" '+pred+'/></label></td></tr></table></div>');
 		if((i+1) != cantidad)
 		{
 			$('#content_activities').append('<div id="separador"></div>');
@@ -208,7 +252,7 @@ function alista_info()
 
 	if(!valida)
 	{
-		$('#dialog-message').html('<br><p>Algunas actividades dependen de la ejecución de otras, hay que evaluar cuales son las actividades predecesoras de cada una de ella</p>');
+		$('#dialog-message').html('<br><p>Algunas actividades dependen de la ejecuci&oacute;n de otras, hay que evaluar cuales son las actividades predecesoras de cada una de ella</p>');
 		$('#dialog-message').dialog("open");
 		return false;
 	}
@@ -314,7 +358,7 @@ function alista_info_avanzado()
 
 	if(!valida)
 	{
-		$('#dialog-message').html('<br><p>Algunas actividades dependen de la ejecución de otras, hay que evaluar cuales son las actividades predecesoras de cada una de ellas</p>');
+		$('#dialog-message').html('<br><p>Algunas actividades dependen de la ejecuci&oacute;n de otras, hay que evaluar cuales son las actividades predecesoras de cada una de ellas</p>');
 		$('#dialog-message').dialog("open");
 	}
 
@@ -694,7 +738,7 @@ function cargar_concepto(valor)
 	var code;
 	switch(valor) {
     case 'edt':
-        code = '<div id="content_dialog"><h2>&nbsp;&nbsp;La EDT</h2><div><div class="col-md-4 about-text-left"><p align="justify">Llamada tambi&eacute;n estructura desglosada de trabajo, es la estructura jer&aacute;rquica y descendente de las partidas o paquetes de trabajo que se deber&aacute;n realizar durante la implementaci&oacute;n de un proyecto para lograr sus objetivos.</p><div><img alt="" src="images/EDT.jpg" style="height:100%; position:relative;width:100%" /></div><p align="justify"><b>Pasos para su construcci&oacute;n:</b><br /><br />- Primero defina el producto Final (Objetivo espec&iacute;fico).<br />- Defina etapas o divisiones funcionales.<br />- Identificar los entregables espec&iacute;ficos del producto.<br />- Identificar actividades claves y de apoyo.</p></div></div></div>';
+        code = '<div id="content_dialog"><h2>&nbsp;&nbsp;EDT</h2><div><div class="col-md-4 about-text-left"><p align="justify">Llamada tambi&eacute;n estructura desglosada de trabajo, es la estructura jer&aacute;rquica y descendente de las partidas o paquetes de trabajo que se deber&aacute;n realizar durante la implementaci&oacute;n de un proyecto para lograr sus objetivos.</p><div><img alt="" src="images/EDT.jpg" style="height:100%; position:relative;width:100%" /></div><p align="justify"><b>Pasos para su construcci&oacute;n:</b><br /><br />- Primero defina el producto Final (Objetivo espec&iacute;fico).<br />- Defina etapas o divisiones funcionales.<br />- Identificar los entregables espec&iacute;ficos del producto.<br />- Identificar actividades claves y de apoyo.</p></div></div></div>';
         break;
     case 'actividad':
         code = '<div id="content_dialog"><h2>&nbsp;&nbsp;Actividades</h2><div class="inner" id="step_one"><div class="col-md-4 about-text-left"><p align="justify">La definici&oacute;n de actividades consiste en identificar cu&aacute;les son las acciones que se deben llevar a cabo para conseguir los entregables de un proyecto.<br /><br />Una vez creada la EDT, se obtiene el nivel m&aacute;s bajo de esta descomposici&oacute;n, denominado PAQUETES DE TRABAJO. La descomposici&oacute;n de &eacute;stos en componentes m&aacute;s peque&ntilde;os nos proporciona las ACTIVIDADES necesarias para ejecutar los paquetes de trabajo.</p><p align="left"><b>Entradas:</b>- Plan de gesti&oacute;n del cronograma.<br />- L&iacute;nea base del Alcance.<br />- Activos de los procesos de la Organizaci&oacute;n.<br />- Factores Ambientales.</p><p align="Right"><b>Herramientas y T&eacute;cnicas:</b><br />- Descomposici&oacute;n EDT.<br />- Planificaci&oacute;n gradual.<br />- Juicio de expertos.</p><p align="Left"><b>Salidas:</b>- Lista de Actividades.<br />- Atributos de la Actividad.<br />- Listado de hitos.</p></div></div></div>';
@@ -723,9 +767,186 @@ function cargar_concepto(valor)
 	$('#header').scrollTo('fast');
 }
 
+function validaremail(formulario) { 
+	if (formulario.indexOf('@') == -1) {
+		$('#dialog-message').html('La \"Direcci&oacute;n de Email\" no es correcta.');
+		$('#dialog-message').dialog("open");
+		return 0;
+	}
+	return 1;
+	 
+} 
+
+function enviar_contacto()
+{
+	console.log($('#n_proyecto').val());
+	if( $('#n_proyecto').val() == '' 
+		|| $('#n_gerente').val() == '' 
+		|| $('#presupuesto').val() == '' 
+		|| $('#obj').val() == '' )
+	{	
+		$('#dialog-message').attr('title','Upss... algo no está bien');
+		$('#dialog-message').html('Debe diligenciar toda la informaci&oacute;n del formulario de contacto.');
+		$('#dialog-message').dialog("open");
+	}else{
+		if(validaremail($('#presupuesto').val()) != 0){
+			$('#dialog-message').attr('title','Mensaje Enviado');
+			$('#dialog-message').html('Su mensaje ha sido recibido, en breve estaremos dando respuesta a su solicitud.');
+			$('#dialog-message').dialog("open");
+			$('#n_proyecto').val(null);
+			$('#n_gerente').val(null);
+			$('#presupuesto').val(null);
+			$('#obj').val(null);
+		}
+	}
+
+}
+
+/*Funciones para guardado y recuperacion de la informacion*/
+
+function abrir_proyectos()
+{
+	//console.log(id_device);
+	//id_device = '859fe2848923a8fd';
+	$.ajax({
+		async: true,
+	  //url: 'php/servicio.php',
+      url: 'http://www.sialen.com/webservice/servicio.php',
+      type: 'POST',
+      dataType: 'json',
+      data: {ac: 'abrir', id: id_device },
+	})
+	.done(function(result) {
+		console.log(result);
+		$('.view-port').html(result.data);
+	})
+	.fail(function(result, x, y) { 
+		$('.view-port').html(result.data);
+		console.log(result);
+		console.log(x);
+		console.log(y);
+
+	});	
+}
+
+function cargar_proyectos(complejo, id_proyecto)
+{
+	localStorage['id_proyecto'] = id_proyecto;
+	if(complejo==1)
+	{
+		window.location="pert.html";
+	}else{
+		window.location="pert_avanzado.html";
+	}
+}
+
+function cargar_detalle_proyecto(complejo, id_proyecto)
+{
+
+	$.ajax({
+	  //url: 'php/servicio.php',
+      url: 'http://www.sialen.com/webservice/servicio.php',
+      type: 'POST',
+      dataType: 'json',
+      data: {ac: 'detalle1', id: id_proyecto },
+	})
+	.done(function(result) {
+		console.log(result);
+		resultado = result;
+
+		console.log(resultado.data[0]);
+		if(resultado.data[0]['Nombre_Medida'] == 'Hora')
+		{
+			medida = 'h';
+		}else{
+			medida = 'd';
+		}
+		$('#n_proyecto').val(resultado.data[0]['Nombre_Proyecto']);
+		$('#n_gerente').val(resultado.data[0]['Nombre_Gerente']);
+		$('#f_inicio').val(resultado.data[0]['Fecha_Inicio']);
+		$('#m_tiempo').val(medida);
+		$('#obj').val(resultado.data[0]['Descripcion_Proyecto']);
+
+		$('#cargar').text('Siguiente');
+		$('#cargar_a').text('Siguiente');
+
+		$('#n_proyecto').attr('readonly', true);
+		$('#n_gerente').attr('readonly', true);
+		$('#f_inicio').attr('readonly', true);
+		$('#m_tiempo').attr('readonly', true);
+		$('#obj').attr('readonly', true);
+
+		if(complejo == 2)
+		{
+			$('#presupuesto').val(resultado.data[0]['Presupuesto_Proyecto']);
+			$('#presupuesto').attr('readonly', true);
+		}
+	})
+	.fail(function(result) {
+		console.log(result);
+		resultado = JSON.parse(result.responseText);
+
+		console.log(resultado.data[0]);
+		if(resultado.data[0]['Nombre_Medida'] == 'Hora')
+		{
+			medida = 'h';
+		}else{
+			medida = 'd';
+		}
+		$('#n_proyecto').val(resultado.data[0]['Nombre_Proyecto']);
+		$('#n_gerente').val(resultado.data[0]['Nombre_Gerente']);
+		$('#f_inicio').val(resultado.data[0]['Fecha_Inicio']);
+		$('#m_tiempo').val(medida);
+		$('#obj').val(resultado.data[0]['Descripcion_Proyecto']);
+
+		$('#cargar').text('Siguiente');
+		$('#cargar_a').text('Siguiente');
+
+		$('#n_proyecto').attr('readonly', true);
+		$('#n_gerente').attr('readonly', true);
+		$('#f_inicio').attr('readonly', true);
+		$('#m_tiempo').attr('readonly', true);
+		$('#obj').attr('readonly', true);
+
+		if(complejo == 2)
+		{
+			$('#presupuesto').val(resultado.data[0]['Presupuesto_Proyecto']);
+			$('#presupuesto').attr('readonly', true);
+		}
+
+	});	
+	
+
+}
+
+function cargar_detalle_actividades(complejo, id_proyecto)
+{	
+	var valores;
+
+	$.ajax({
+	  async: false,
+	  //url: 'php/servicio.php',
+      url: 'http://www.sialen.com/webservice/servicio.php',
+      type: 'POST',
+      dataType: 'json',
+      data: {ac: 'detalle2', id: id_proyecto },
+	})
+	.done(function(result) {
+		console.log('aca1');
+		localStorage['abrir'] = JSON.stringify(result);
+		console.log(localStorage['abrir']);
+	})
+	.fail(function(result) { 
+		localStorage['abrir'] = JSON.stringify(result);
+	});	
+	return valores;
+}
+
 
 $(document).ready(function(){
 	var cantidad = 0;
+	id_device = localStorage["id_device"];
+	localStorage['abrir']=null;
 	$('#cargar').click(function(){
 		todoCorrecto=true;
 		console.log($('#n_proyecto').val() + " - "+ $('#n_gerente').val().length + " - "+ /^\s*$/.test($('#nombre_p').val()) + " - " + $('#m_tiempo').val() + " - " + $('#f_inicio').val());
@@ -737,7 +958,7 @@ $(document).ready(function(){
 	 		|| $('#f_inicio').val() == '' ){
        		todoCorrecto=false;
        	}
-       	console.log(todoCorrecto);
+
 		cantidad = 2;
 		if(cantidad>0 && todoCorrecto)
 		{
@@ -759,7 +980,7 @@ $(document).ready(function(){
 			$('#info_proyecto').hide();
 
 		}else{
-			$('#dialog-message').html('Debe completar la información del formulario');
+			$('#dialog-message').html('Debe completar la informaci&oacute;n del formulario');
 			$('#dialog-message').dialog("open");
 		}
 		
@@ -772,7 +993,9 @@ $(document).ready(function(){
 	 		|| /^\s*$/.test($('#nombre_p').val())
 	 		|| $('#m_tiempo').val() == ''
 	 		|| $('#f_inicio').val() == null
-	 		|| $('#f_inicio').val() == '' ){
+	 		|| $('#f_inicio').val() == '' 
+	 		|| $('#presupuesto').val() == ''
+	 		|| $('#presupuesto').val() == null ){
        		todoCorrecto=false;
        	}
 
@@ -799,20 +1022,14 @@ $(document).ready(function(){
 
 		}else{
 			//$('#error').html('Debe completar la información del formulario');
-			$('#dialog-message').html('Debe completar la información del formulario');
+			$('#dialog-message').html('Debe completar la informaci&oacute;n del formulario');
 			$('#dialog-message').dialog("open");
 		}
 		
 	});
 
 
-	/*Funciones para guardado y recuperacion de la informacion*/
-
-	function save_proyect()
-	{
-
-	}
-
+	
 	/*Menu*/
 
 	function ingresar(){
@@ -820,10 +1037,12 @@ $(document).ready(function(){
 	}
 
 	$('#menu_pert').click(function(){
+		localStorage['id_proyecto'] = null;
 		window.location="menu_pert.html";
 	});
 
 	$('#menu_concepto').click(function(){
+		localStorage['id_proyecto'] = null;
 		window.location="menu_pert.html";
 	});
 
@@ -840,7 +1059,7 @@ $(document).ready(function(){
 	});
 
 	$('#menu_abrir_int').click(function(){
-		window.location="menu_pert.html";
+		window.location="abrir_pert.html";
 	});
 
 	$('#menu_concepto').click(function(){

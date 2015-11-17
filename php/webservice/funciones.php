@@ -162,7 +162,7 @@ function saveProyect($valores)
                 proyecto_pert.Descripcion_Proyecto,
                 proyecto_pert.Medida_Tiempo_Id,
                 proyecto_pert.Complejidad_Proyecto_Id,
-                proyecto_pert.usuario_user_id
+                proyecto_pert.id_device
             )
             VALUES
                 ('".$valores['nombre']."',
@@ -171,7 +171,7 @@ function saveProyect($valores)
                  '".$valores['objetivo']."',
                  '".$valores['medida']."',
                  '".$valores['complejidad']."',
-                 '3')";
+                 '".$valores['dispositivo']."')";
     $objConnect->consulta($query); 
     $result = $objConnect->insert_id(); 
 
@@ -192,7 +192,7 @@ function saveProyectA($valores)
                 proyecto_pert.Descripcion_Proyecto,
                 proyecto_pert.Medida_Tiempo_Id,
                 proyecto_pert.Complejidad_Proyecto_Id,
-                proyecto_pert.usuario_user_id,
+                proyecto_pert.id_device,
                 proyecto_pert.Presupuesto_Proyecto
             )
             VALUES
@@ -202,7 +202,7 @@ function saveProyectA($valores)
                  '".$valores['objetivo']."',
                  '".$valores['medida']."',
                  '".$valores['complejidad']."',
-                 '3',
+                 '".$valores['dispositivo']."',
                  '".$valores['presupuesto']."')";
     $objConnect->consulta($query); 
     $result = $objConnect->insert_id(); 
@@ -388,6 +388,117 @@ function saveDetalleProyectA($data, $id_proyecto)
     }
 
     return $result;
+}
+
+function findproject($id_device=null, $id_proyecto=null)
+{
+    require_once('conexion.php');
+
+    //echo ('final');die();
+
+    $objConnect = new ClassConexion();
+    $objConnect->MySQL();
+
+
+    $query = "  SELECT
+                proyecto_pert.Proyecto_Id,
+                proyecto_pert.Nombre_Proyecto,
+                proyecto_pert.Nombre_Gerente,
+                DATE_FORMAT(proyecto_pert.Fecha_Inicio, '%Y-%m-%d') as 'Fecha_Inicio',
+                proyecto_pert.Presupuesto_Proyecto,
+                proyecto_pert.Descripcion_Proyecto,
+                proyecto_pert.Duracion_Proyecto,
+                proyecto_pert.Fecha_Fin,
+                proyecto_pert.Desviacion_Estandar,
+                proyecto_pert.Varianza_Proyecto,
+                proyecto_pert.Medida_Tiempo_Id,
+                proyecto_pert.Complejidad_Proyecto_Id,
+                proyecto_pert.id_device,
+                medida_tiempo.Nombre_Medida,
+                complejidad_proyecto.Nombre_Complejidad
+                FROM
+                proyecto_pert
+                INNER JOIN actividad ON actividad.Proyecto_Id = proyecto_pert.Proyecto_Id
+                INNER JOIN actividad_predecesora ON actividad_predecesora.Actividad_Id = actividad.Actividad_Id
+                INNER JOIN medida_tiempo ON proyecto_pert.Medida_Tiempo_Id = medida_tiempo.Medida_Tiempo_Id
+                INNER JOIN complejidad_proyecto ON proyecto_pert.Complejidad_Proyecto_Id = complejidad_proyecto.Complejidad_Proyecto_Id
+                WHERE 1 ";
+    if($id_device!=null) $query.=" AND proyecto_pert.id_device = '$id_device'";
+    if($id_proyecto!=null) $query.=" AND proyecto_pert.Proyecto_Id = '$id_proyecto'";
+
+    $query.= " GROUP BY
+                proyecto_pert.Proyecto_Id ";
+
+    $result_detalle_temp = $objConnect->consulta($query); 
+    if($objConnect->num_rows($result_detalle_temp)>0){ 
+        $conteo=0;
+        while($resultados = $objConnect->fetch_array($result_detalle_temp)){ 
+            $result_detalle[$conteo]['Proyecto_Id'] = $resultados['Proyecto_Id']; 
+            $result_detalle[$conteo]['Nombre_Proyecto'] = $resultados['Nombre_Proyecto']; 
+            $result_detalle[$conteo]['Nombre_Gerente'] = $resultados['Nombre_Gerente']; 
+            $result_detalle[$conteo]['Fecha_Inicio'] = $resultados['Fecha_Inicio']; 
+            $result_detalle[$conteo]['Presupuesto_Proyecto'] = $resultados['Presupuesto_Proyecto']; 
+            $result_detalle[$conteo]['Descripcion_Proyecto'] = $resultados['Descripcion_Proyecto']; 
+            $result_detalle[$conteo]['Nombre_Medida'] = $resultados['Nombre_Medida']; 
+            $result_detalle[$conteo]['Nombre_Complejidad'] = $resultados['Nombre_Complejidad']; 
+            $result_detalle[$conteo]['id_device'] = $resultados['id_device']; 
+            $result_detalle[$conteo]['id_complejidad'] = $resultados['Complejidad_Proyecto_Id']; 
+            $conteo++;
+        }
+    }
+
+    return $result_detalle;
+}
+
+function findactivities($id_proyecto=null)
+{
+    require_once('conexion.php');
+
+    //echo ('final');die();
+
+    $objConnect = new ClassConexion();
+    $objConnect->MySQL();
+
+
+    $query = "  SELECT
+                actividad.Actividad_Id,
+                actividad.Nombre_Actividad,
+                actividad.Tpesimista_Actividad,
+                actividad.Tprobable_Actividad,
+                actividad.Toptimista_Actividad,
+                actividad.Tesperado_Actividad,
+                actividad.Costo_Actividad,
+                actividad.Proyecto_Id,
+                actividad_predecesora.Numero_Actividad,
+                actividad_predecesora.Actividad_Id as 'id_predecesora'
+                FROM
+                proyecto_pert
+                INNER JOIN actividad ON actividad.Proyecto_Id = proyecto_pert.Proyecto_Id
+                LEFT JOIN actividad_predecesora ON actividad_predecesora.Actividad_Id = actividad.Actividad_Id
+                INNER JOIN medida_tiempo ON proyecto_pert.Medida_Tiempo_Id = medida_tiempo.Medida_Tiempo_Id
+                INNER JOIN complejidad_proyecto ON proyecto_pert.Complejidad_Proyecto_Id = complejidad_proyecto.Complejidad_Proyecto_Id
+                WHERE 1 ";
+    if($id_proyecto!=null) $query.=" AND proyecto_pert.Proyecto_Id = '$id_proyecto'";
+
+    $result_detalle_temp = $objConnect->consulta($query); 
+    if($objConnect->num_rows($result_detalle_temp)>0){ 
+        $conteo=0;
+        while($resultados = $objConnect->fetch_array($result_detalle_temp)){ 
+            $result_detalle[$conteo]['Actividad_Id'] = $resultados['Actividad_Id']; 
+            $result_detalle[$conteo]['Nombre_Actividad'] = $resultados['Nombre_Actividad']; 
+            $result_detalle[$conteo]['Tpesimista_Actividad'] = $resultados['Tpesimista_Actividad']; 
+            $result_detalle[$conteo]['Tprobable_Actividad'] = $resultados['Tprobable_Actividad']; 
+            $result_detalle[$conteo]['Toptimista_Actividad'] = $resultados['Toptimista_Actividad']; 
+            $result_detalle[$conteo]['Tesperado_Actividad'] = $resultados['Tesperado_Actividad']; 
+            $result_detalle[$conteo]['Costo_Actividad'] = $resultados['Costo_Actividad']; 
+            $result_detalle[$conteo]['Numero_Actividad'] = $resultados['Numero_Actividad']; 
+            $result_detalle[$conteo]['id_predecesora'] = $resultados['id_predecesora']; 
+            $result_detalle[$conteo]['Proyecto_Id'] = $resultados['Proyecto_Id']; 
+            $conteo++;
+        }
+    }
+
+    return $result_detalle;
 }
 
 ?>

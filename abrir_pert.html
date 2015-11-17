@@ -25,7 +25,6 @@
   <script type="text/javascript" src="src/plugins/jquery.silver_track.css3_animation.js" charset="utf-8"></script>
   <script type="text/javascript" src="src/plugins/jquery.silver_track.circular_navigator.js" charset="utf-8"></script>
 
-
   <link rel="stylesheet" href="js/jqueryui/jquery-ui.theme.css" type="text/css" media="screen" charset="utf-8">
   <script src="js/jqueryui/jquery-ui.js"></script>
 
@@ -49,6 +48,11 @@
         },
         defaultLayout: "web"
       });
+     
+    });
+
+    $(document).ready(function() {
+      abrir_proyectos();  
     });
   </script>
 </head>
@@ -61,54 +65,15 @@
 	</style>
   <div id="header" style="height: 70px; margin-bottom: 30px; background-color: #16A401;"><span>APPERT</span></div>
   <div class="track example-2">
-    <h2>&nbsp;&nbsp;Contactenos</h2>
+    <h2>Abrir proyectos PERT</h2>
     <div class="inner" id="step_one">
 
-      <div class="view-port" id="info_proyecto">
-        <center>
-        <table >
-          <tr>
-            <td>
-      	      <div class="div_create"><label for="n_proyecto">Nombre &nbsp;&nbsp;
-            </td>
-            <td>
-              <input type="text" name="n_proyecto" id="n_proyecto" required></label></div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-            	<div class="div_create"><label for="n_gerente">Asunto &nbsp;&nbsp; 
-            </td>
-            <td>     
-              <input type="text" name="n_gerente" id="n_gerente" required></label></div>
-      	   </td>
-          </tr>
-          <tr>
-            <td>  
-              <div class="div_create"><label for="f_inicio" required>Correo &nbsp;&nbsp;
-            </td>
-            <td>      
-              <input type="email" name="presupuesto" id="presupuesto"></label></div>
-            </td>
-          </tr>
-          <tr>
-            <td> 
-      	       <div class="div_create"><label for="obj">Descripci&oacute;n &nbsp;&nbsp;   
-      		  </td>
-            <td>
-              <textarea name="obj" id="obj" cols="22" rows="5"></textarea>
-      		    </label>
-      	       </div>	
-            </td>
-          </tr>
-        </table>
-      </center>
-      	<div class="botones">
-      		<div  onclick="enviar_contacto();"><a href="javascript:void(0)">Enviar</a></div>
-      		<div><a href="menu.html">Regresar</a></div>
-      	</div>	
-    
+      <div class="view-port" id="info_proyecto">    
       </div>
+    	<div class="botones">
+    		<!-- <div id="cargar">Crear</div> -->
+    		<div><a href="menu_pert.html">Regresar</a></div>
+    	</div>	
 
       <div class="bullet-pagination"></div>
       <div id="actividades"></div>
@@ -125,7 +90,7 @@
       <a href="#" class="next disabled"></a>
     </div>
   </div>
-  <div class="footer" style="position:relative;width: 100%;bottom: 0; height: 100%; margin-top: 40px;">
+  <div class="footer" style="position:relative;width: 100%;bottom: 0; height: 100%;">
       <div class="container" style="width: auto;">
           <div class="footer-main">
               <div class="col-md-6 footer-left">
@@ -144,9 +109,9 @@
       <a href="#home" id="toTop" class="scroll" style="display: block;"> 
         <span id="toTopHover" style="opacity: 1;"> </span></a>
     </div>
-
-      <!-- Dialogos para las alertas del sistema -->
-    <div id="dialog-message" title="Información del mensaje"></div>
+  
+  <!-- Dialogos para las alertas del sistema -->
+    <div id="dialog-message" title="Upss... algo no está bien"></div>
 
 </body>
 </html>
