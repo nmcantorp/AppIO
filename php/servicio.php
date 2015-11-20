@@ -82,11 +82,11 @@ switch ($_REQUEST['ac']) {
 		//die($id_device);
 		$resultado = findproject($id_device);
 
-		$html = "<table class='table table-bordered'><thead><tr><th>Nombre Proyecto</th><th>Fecha Inicio</th><th></th></tr></thead><tbody>";
+		$html = "<table class='table table-bordered'><thead><tr><th>Nombre Proyecto</th><th>Fecha Inicio</th></tr></thead><tbody>";
 		for ($i=0; $i < count($resultado); $i++) { 
 			$date = new DateTime($resultado[$i]['Fecha_Inicio']);
 			//echo $date->format('Y-m-d');
-			$html .= "<tr><td>".$resultado[$i]['Nombre_Proyecto']."</td><td>".$date->format('Y-m-d')."</td><td onclick='cargar_proyectos(".$resultado[$i]['id_complejidad'].", ".$resultado[$i]['Proyecto_Id'].")'><a href='javascript:void(0);'>Abrir</a></td></tr>";
+			$html .= "<tr onclick='cargar_proyectos(".$resultado[$i]['id_complejidad'].", ".$resultado[$i]['Proyecto_Id'].")'><td>".$resultado[$i]['Nombre_Proyecto']."</td><td>".$date->format('Y-m-d')."</td></tr>";
 		}
 		
 		$html .= "</tbody></table>";

@@ -34,7 +34,7 @@
 
 body {
   font-family: 'candara';
-  font-size: 18px;
+  font-size: 20px;
   margin: 0;
   padding: 0;
 }
@@ -86,6 +86,7 @@ h2 {
 .track {
   width: 100%;
   position: relative;
+  padding-bottom: 80px;
 }
 
 .view-port, .track .inner {
@@ -448,13 +449,13 @@ h2 {
   position: relative;
   background-color: #2FFF54;
   width: 20%;
-  height: 70px;
+  height: 55px;
   margin: 15px auto 0 auto;
   vertical-align: middle;
   text-align: center;
   padding: 5px;
   cursor: pointer;
-  font-size: 1.5em;
+  font-size: 1.25em;
   color: black;
   border-radius: 10px;
   display: inline-block;
@@ -475,7 +476,7 @@ h2 {
 }
 
 div#menu_pert_int {
-    background-color: red;
+    background-color: #B6D7A8;
     position: relative;
     height: 100px;
     border-radius: 50%;
@@ -487,7 +488,7 @@ div#menu_pert_int {
   position: relative;
   height: 60px;
   border-radius: 10px;
-  width: 40%;
+  width: 30%;
   float: left;
   padding-top: 0;
   box-shadow: 0px 0px 12px 2px rgba(119, 119, 119, 0.75);
@@ -496,7 +497,7 @@ div#menu_pert_int {
 }
 
 div#menu_basico_int {
-    background-color: yellow;
+    background-color: #B6D7A8;
     position: relative;
     height: 100px;
     border-radius: 50%;
@@ -508,7 +509,7 @@ div#menu_basico_int {
   position: relative;
   height: 60px;
   border-radius: 10px;
-  width: 40%;
+  width: 30%;
   float: left;
   padding-top: 0;
   box-shadow: 0px 0px 12px 2px rgba(119, 119, 119, 0.75);
@@ -517,7 +518,7 @@ div#menu_basico_int {
 }
 
 div#menu_abrir_int {
-    background-color: blue;
+    background-color: #B6D7A8;
     position: relative;
     height: 100px;
     border-radius: 50%;
@@ -530,7 +531,7 @@ div#menu_abrir_int {
   position: relative;
   height: 60px;
   border-radius: 10px;
-  width: 40%;
+  width: 30%;
   float: left;
   padding-top: 0;
   box-shadow: 0px 0px 12px 2px rgba(119, 119, 119, 0.75);
@@ -540,7 +541,7 @@ div#menu_abrir_int {
 
 
 .boton_menu_int span {
-    margin-top: 0%;
+    margin-top: -8%;
     position: absolute;
     margin-left: 30%;
     font-size: 3.2em;
@@ -578,7 +579,7 @@ div#menu_abrir_int {
 }
 
 span.titulo_menu {
-    left: 4px;
+    left: 30px;
     position: relative;
     top: 20px;
     font-size: 22px;
@@ -590,6 +591,7 @@ div#regresar {
     top: 60px;
     font-size: 1.2em;
     text-align: right;
+    padding-right: 20px;
 }
 
 a {
@@ -606,7 +608,8 @@ a:visited {
 .botones div {
   display: inline-block;
   border: solid 1px black;
-  padding: 5px 13px;
+  background-color: #B6D7A8;
+  padding: 5px 5px;
   margin: 20px 0px;
   border-radius: 6px;
   box-shadow: 0px 0px 12px 2px rgba(119, 119, 119, 0.75);
@@ -615,11 +618,17 @@ a:visited {
   cursor: pointer;
   width: 90px;
   text-align: center;
+  position: relative;
+  left: 20px;
 }
 
 .botones div:last-child {
   display: inline-block;
   float: right;
+  margin-right: 10px;
+  position: relative;
+  right: 20px;
+  background-color: #B6D7A8;
 }
 
 .contact-but {
@@ -631,10 +640,20 @@ a:visited {
     float: right;
 }
 
+input#volvert {
+    width: 140px;
+    position: relative;
+}
+
+input#cargart {
+    left: 20px;
+    position: relative;
+}
+
 .act_detail{
   margin: 25px auto;
   border: solid 1px;
-  padding: 0 0 0 5px;
+  padding: 0 10px 10px 5px;
   border-radius: 10px 10px;
 }
 
@@ -685,6 +704,7 @@ input.boton_remover {
   font-size: 2.5em; 
   color: white;
   background-color: #16A401; 
+  font-weight: bold !important;
 }
 
 #header span{

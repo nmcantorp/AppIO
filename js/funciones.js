@@ -432,8 +432,8 @@ function carga_info()
 
 		info_to_load += '</tbody></table>';
 
-		info_to_load += '<div class="contact-but" style="float: right; width: 120px;" ><input type="submit" id="volver" value="Volver" style="width: 100%;background: #FF6161;" onClick="javascript:volver_actividades();"/></div>';
-		info_to_load += '<div class="contact-but" style="float:left; margin: 0 0 0 5px;width: 120px;" ><input type="submit" id="graficar" value="Graficar" style="width: 100%;background: #1793d1;" onClick="javascript:graficar();" /></div>';
+		info_to_load += '<div class="contact-but" style="float: right; width: 120px; right: 20px; position: relative;" ><input type="submit" id="volver" value="Volver" style="width: 100%;background: #B6D7A8;" onClick="javascript:volver_actividades();"/></div>';
+		info_to_load += '<div class="contact-but" style="float:left; margin: 0 0 0 5px;width: 120px;left: 20px; position: relative;" ><input type="submit" id="graficar" value="Graficar" style="width: 100%;background: #B6D7A8;" onClick="javascript:graficar();" /></div>';
 
 		$('#step_two').html(info_to_load);
 		$('#step_two').show();
@@ -491,8 +491,8 @@ function carga_info_avanzado()
 
 		info_to_load += '</thead></table>';
 
-		info_to_load += '<div class="contact-but" style="float: right; width: 120px;" ><input type="submit" id="volver" value="Volver" style="width: 100%;background: #FF6161;" onClick="javascript:volver_actividades();"/></div>';
-		info_to_load += '<div class="contact-but" style="float:left; margin: 0 0 0 5px;width: 120px;" ><input type="submit" id="graficar" value="Graficar" style="width: 100%;background: #1793d1;" onClick="javascript:graficar_avanzado();" /></div>';
+		info_to_load += '<div class="contact-but" style="float: right; width: 120px; right: 20px; position: relative;" ><input type="submit" id="volver" value="Volver" style="width: 100%;background: #B6D7A8;" onClick="javascript:volver_actividades();"/></div>';
+		info_to_load += '<div class="contact-but" style="float:left; margin: 0 0 0 5px;width: 120px;left: 20px; position: relative;" ><input type="submit" id="graficar" value="Graficar" style="width: 100%;background: #B6D7A8;" onClick="javascript:graficar_avanzado();" /></div>';
 
 		$('#step_two').html(info_to_load);
 		$('#step_two').show();
