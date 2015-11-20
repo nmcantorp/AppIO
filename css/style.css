@@ -770,3 +770,7 @@ div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix > div > button {
 div#dialog-message {
     padding-left: 10px;
 }
+
+table label {
+    width: 125px;
+}
